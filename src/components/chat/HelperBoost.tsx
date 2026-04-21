@@ -181,7 +181,7 @@ export default function HelperBoost({
           >
             <button
               onClick={toggleVisibility}
-              className="flex items-center gap-1 px-3 py-1 text-xs text-gray-500 dark:text-gray-400 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
+              className="flex items-center gap-1 px-3 py-1 text-xs text-gray-500 dark:text-white/65 transition-colors hover:text-gray-700 dark:hover:text-white/90"
             >
               {isVisible ? (
                 <>
@@ -209,11 +209,11 @@ export default function HelperBoost({
                   key={key}
                   onClick={() => handleQuestionClick(key)}
                   variant="outline"
-                  className="border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl bg-white/80 dark:bg-gray-800/80 px-4 py-3 shadow-none backdrop-blur-sm transition-none active:scale-95"
+                  className="h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl border border-gray-300 bg-white/80 px-4 py-3 shadow-none backdrop-blur-sm transition-none active:scale-95 hover:bg-gray-100 dark:border-white/12 dark:bg-white/10 dark:hover:bg-white/16"
                 >
-                  <div className="flex items-center gap-3 text-gray-900 dark:text-gray-100">
+                  <div className="flex items-center gap-3 text-gray-900 dark:text-white">
                     <Icon size={18} strokeWidth={2} color={color} />
-                    <span className="text-sm font-medium">{key}</span>
+                    <span className="text-sm font-medium dark:text-white/92">{key}</span>
                   </div>
                 </Button>
                 ))}
@@ -224,11 +224,11 @@ export default function HelperBoost({
                     <TooltipTrigger asChild>
                       <Drawer.Trigger className="group relative flex flex-shrink-0 items-center justify-center">
                       <motion.div
-                        className="hover:bg-gray-100 dark:hover:bg-gray-700 flex h-auto cursor-pointer items-center space-x-1 rounded-xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 px-4 py-3 text-sm backdrop-blur-sm transition-all duration-200"
+                        className="flex h-auto cursor-pointer items-center space-x-1 rounded-xl border border-gray-300 bg-white/80 px-4 py-3 text-sm backdrop-blur-sm transition-all duration-200 hover:bg-gray-100 dark:border-white/12 dark:bg-white/10 dark:hover:bg-white/16"
                         whileHover={{ scale: 1 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <div className="flex items-center gap-3 text-gray-900 dark:text-gray-100">
+                        <div className="flex items-center gap-3 text-gray-900 dark:text-white">
                           <CircleEllipsis
                             className="h-[20px] w-[18px] text-primary dark:text-primary-light" // or use suitable text colors here
                             strokeWidth={2}

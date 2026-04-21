@@ -95,7 +95,7 @@ export default function Home() {
           onClick={() =>
             goToChat('Are you open to internships, research work, or applied AI roles?')
           }
-          className="relative flex cursor-pointer items-center gap-2 rounded-full border bg-white/30 px-4 py-1.5 text-sm font-medium text-black shadow-md backdrop-blur-lg transition hover:bg-white/60 dark:border-white dark:text-white dark:hover:bg-neutral-800"
+          className="relative flex cursor-pointer items-center gap-2 rounded-full border bg-white/30 px-4 py-1.5 text-sm font-medium text-black shadow-md backdrop-blur-lg transition hover:bg-white/60 dark:border-white/15 dark:bg-white/8 dark:text-white dark:hover:bg-white/12"
         >
           {/* Green pulse dot */}
           <span className="relative flex h-2 w-2">
@@ -152,7 +152,7 @@ export default function Home() {
           }}
           className="relative w-full max-w-lg"
         >
-          <div className="mx-auto flex items-center rounded-full border border-neutral-200 bg-white/30 py-2.5 pr-2 pl-6 backdrop-blur-lg transition-all hover:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600">
+          <div className="mx-auto flex items-center rounded-full border border-neutral-200 bg-white/30 py-2.5 pr-2 pl-6 backdrop-blur-lg transition-all hover:border-neutral-300 dark:border-white/12 dark:bg-white/10 dark:hover:border-white/20">
             <input
               ref={inputRef}
               type="text"
@@ -179,11 +179,11 @@ export default function Home() {
               key={key}
               onClick={() => goToChat(questions[key])}
               variant="outline"
-              className="border-border hover:bg-border/30 aspect-square w-full cursor-pointer rounded-2xl border bg-white/30 py-8 shadow-none backdrop-blur-lg active:scale-95 md:p-10"
+              className="aspect-square w-full cursor-pointer rounded-2xl border border-neutral-200/80 bg-white/35 py-8 shadow-none backdrop-blur-lg active:scale-95 hover:bg-white/55 dark:border-white/12 dark:bg-white/10 dark:hover:bg-white/16 md:p-10"
             >
-              <div className="flex h-full flex-col items-center justify-center gap-1 text-gray-700">
+              <div className="flex h-full flex-col items-center justify-center gap-1 text-gray-700 dark:text-white">
                 <Icon size={22} strokeWidth={2} color={color} />
-                <span className="text-xs font-medium sm:text-sm">{key}</span>
+                <span className="text-xs font-medium sm:text-sm dark:text-white/92">{key}</span>
               </div>
             </Button>
           ))}
