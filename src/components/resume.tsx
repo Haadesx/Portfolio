@@ -12,7 +12,7 @@ export function Resume() {
     fileType: 'PDF',
     lastUpdated: 'April 2026',
     fileSize: 'Resume PDF',
-    downloadUrl: '/Varesh_Resume_ML.pdf',
+    downloadUrl: varesh.resumePath,
   };
 
   const handleDownload = () => {

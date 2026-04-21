@@ -46,7 +46,7 @@ export function Contact() {
       icon: <Instagram className="h-5 w-5" />,
       title: 'Resume',
       value: 'Varesh_Resume_ML.pdf',
-      href: '/Varesh_Resume_ML.pdf',
+      href: varesh.resumePath,
       color: 'text-pink-600'
     }
   ];

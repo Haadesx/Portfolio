@@ -11,6 +11,7 @@ export const varesh = {
   github: 'https://github.com/Haadesx',
   portfolioRepo: 'https://github.com/Haadesx/Portfolio',
   githubUsername: 'Haadesx',
+  resumePath: '/Varesh_Resume_ML.pdf',
   avatar: 'https://avatars.githubusercontent.com/u/128777625?v=4',
   description:
     "Hey, I'm Varesh — a machine learning engineer focused on applied AI systems that actually get shipped. I like the intersection of models, product workflow, and interfaces: computer vision pipelines, agentic systems, multimodal tooling, and full-stack delivery.",
