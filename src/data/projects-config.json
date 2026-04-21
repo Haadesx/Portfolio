@@ -1,0 +1,46 @@
+{
+  "repos": {
+    "realtime-voice-csm": {
+      "visible": true,
+      "category": "Voice AI",
+      "title": "Realtime Voice CSM",
+      "description": "Real-time voice conversation system with web audio visualization and GPU acceleration.",
+      "order": 1
+    },
+    "M-Agent": {
+      "visible": true,
+      "category": "Developer Tools",
+      "title": "M-Agent",
+      "description": "Markdown-native control plane for task agents, slice agents, and tool-ready workflows.",
+      "order": 2
+    },
+    "EyeQ": {
+      "visible": true,
+      "category": "Computer Vision",
+      "title": "EyeQ Repository",
+      "description": "Repository for the CareWatch hackathon build around caretaker abuse detection and monitoring.",
+      "order": 3
+    },
+    "H-Swarm": {
+      "visible": true,
+      "category": "Applied AI",
+      "title": "H-Swarm",
+      "description": "Healthcare scenario workspace for evidence-driven decisions and structured capital memos.",
+      "order": 4
+    },
+    "HackHers26": {
+      "visible": true,
+      "category": "Payments",
+      "title": "HackHERS 2026 Build",
+      "description": "Hackathon repository for a secure payment liveness and deepfake detection system.",
+      "order": 5
+    },
+    "CleanMac": {
+      "visible": true,
+      "category": "Swift Utility",
+      "title": "CleanMac",
+      "description": "A small Swift utility showing product polish outside the core AI stack.",
+      "order": 6
+    }
+  }
+}

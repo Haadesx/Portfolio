@@ -1,0 +1,125 @@
+'use client';
+
+import {
+  ChatBubble,
+  ChatBubbleMessage,
+} from '@/components/ui/chat/chat-bubble';
+import { ChatRequestOptions } from 'ai';
+import type { UIMessage } from '@ai-sdk/react';
+import { motion } from 'framer-motion';
+import ChatMessageContent from './chat-message-content';
+import ToolRenderer from './tool-renderer';
+
+type ToolDisplayPart = {
+  type: string;
+  toolCallId: string;
+  toolName: string;
+  state: string;
+  input?: unknown;
+  output?: unknown;
+  errorText?: string;
+};
+
+type ToolMessagePart = Extract<
+  UIMessage['parts'][number],
+  { toolCallId: string; state: string }
+>;
+
+const isToolMessagePart = (part: UIMessage['parts'][number]): part is ToolMessagePart => {
+  return (
+    (part.type.startsWith('tool-') || part.type === 'dynamic-tool') &&
+    'toolCallId' in part &&
+    typeof part.toolCallId === 'string' &&
+    'state' in part &&
+    typeof part.state === 'string'
+  );
+};
+
+interface SimplifiedChatViewProps {
+  message: UIMessage;
+  isLoading: boolean;
+  reload: (chatRequestOptions?: ChatRequestOptions) => Promise<void>;
+}
+
+const MOTION_CONFIG = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 20 },
+  transition: {
+    duration: 0.3,
+    ease: 'easeOut' as const,
+  },
+};
+
+export function SimplifiedChatView({
+  message,
+  isLoading,
+  reload,
+}: SimplifiedChatViewProps) {
+  if (message.role !== 'assistant') return null;
+
+  const toolResults: ToolDisplayPart[] =
+    message.parts
+      ?.filter(
+        (part): part is ToolMessagePart =>
+          isToolMessagePart(part) && part.state === 'output-available'
+      )
+      .map((part) => ({
+        type: part.type,
+        toolCallId: part.toolCallId,
+        toolName:
+          'toolName' in part && typeof part.toolName === 'string'
+            ? part.toolName
+            : part.type.replace(/^tool-/, ''),
+        state: part.state,
+        input: part.input,
+        output: part.output,
+        errorText: part.errorText,
+      })) || [];
+
+  // Only display the first tool (if any)
+  const currentTool = toolResults.length > 0 ? [toolResults[0]] : [];
+
+  const hasTextContent =
+    message.parts?.some(
+      (part) => part.type === 'text' && part.text.trim().length > 0
+    ) ?? false;
+  const hasTools = currentTool.length > 0;
+
+  return (
+    <motion.div {...MOTION_CONFIG} className="flex h-full w-full flex-col px-4">
+      {/* Single scrollable container for both tool and text content */}
+      <div className="custom-scrollbar flex h-full w-full flex-col overflow-y-auto">
+        {/* Tool invocation result - displayed at the top */}
+        {hasTools && (
+          <div className="mb-4 w-full">
+            <ToolRenderer
+              toolInvocations={currentTool}
+              messageId={message.id || 'current-msg'}
+            />
+          </div>
+        )}
+
+        {/* Text content */}
+        {hasTextContent && (
+          <div className="w-full">
+            <ChatBubble variant="received" className="w-full">
+              <ChatBubbleMessage className="w-full">
+                <ChatMessageContent
+                  message={message}
+                  isLast={true}
+                  isLoading={isLoading}
+                  reload={reload}
+                  skipToolRendering={true}
+                />
+              </ChatBubbleMessage>
+            </ChatBubble>
+          </div>
+        )}
+
+        {/* Add some padding at the bottom for better scrolling experience */}
+        <div className="pb-4"></div>
+      </div>
+    </motion.div>
+  );
+}

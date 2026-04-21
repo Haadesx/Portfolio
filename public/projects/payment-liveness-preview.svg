@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#111827"/>
+  <circle cx="1030" cy="140" r="180" fill="#A855F7" fill-opacity=".18"/>
+  <circle cx="170" cy="650" r="230" fill="#F59E0B" fill-opacity=".18"/>
+  <rect x="90" y="92" width="1020" height="616" rx="32" fill="#0B1220" stroke="#374151"/>
+  <text x="140" y="210" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">Payment Liveness Platform</text>
+  <text x="140" y="270" fill="#C084FC" font-family="Arial, sans-serif" font-size="26">Secure payment flows with liveness and deepfake checks</text>
+  <text x="140" y="360" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="24">TypeScript • React • Solana • Python • iOS</text>
+</svg>
