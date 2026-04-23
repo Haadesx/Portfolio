@@ -41,12 +41,21 @@ export const metadata: Metadata = {
     title: 'Varesh Patel Portfolio',
     description: 'Interactive AI-powered portfolio — ML engineer',
     siteName: 'Varesh Patel Portfolio',
+    images: [
+      {
+        url: '/WhatsApp Image 2026-04-23 at 15.37.39.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Varesh Patel',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Varesh Patel Portfolio',
     description: 'Interactive AI-powered portfolio — ML engineer',
     creator: '@Haadesx',
+    images: ['/WhatsApp Image 2026-04-23 at 15.37.39.jpeg'],
   },
   icons: {
     icon: [
