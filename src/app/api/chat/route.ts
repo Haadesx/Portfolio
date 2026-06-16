@@ -60,7 +60,7 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: openrouter.chat(
-        process.env.OPENROUTER_MODEL ?? 'openai/gpt-4.1-mini'
+        process.env.OPENROUTER_MODEL ?? 'gpt-oss/gpt-oss-120b:free'
       ),
       system: SYSTEM_PROMPT.content,
       messages: convertToModelMessages(cleanedMessages, { tools }),
