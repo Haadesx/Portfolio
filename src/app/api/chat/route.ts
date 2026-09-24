@@ -60,7 +60,7 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: openrouter.chat(
-        process.env.OPENROUTER_MODEL ?? 'gpt-oss/gpt-oss-120b:free'
+        process.env.OPENROUTER_MODEL ?? 'nvidia/nemotron-3.5-lightning:free'
       ),
       system: SYSTEM_PROMPT.content,
       messages: convertToModelMessages(cleanedMessages, { tools }),
