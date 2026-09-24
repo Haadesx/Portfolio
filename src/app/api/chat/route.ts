@@ -11,7 +11,7 @@ import { getSkills } from './tools/getSkills';
 import { getSports } from './tools/getSports';
 import { getWeather } from './tools/getWeather';
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 const openrouter = createOpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,

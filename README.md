@@ -14,7 +14,7 @@ Required environment variables:
 
 ```bash
 OPENROUTER_API_KEY=...
-OPENROUTER_MODEL=openai/gpt-4.1-mini
+OPENROUTER_MODEL=nvidia/nemotron-3.5-lightning:free
 APP_URL=http://localhost:3000
 ```
 
