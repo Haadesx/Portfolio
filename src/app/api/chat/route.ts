@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       firstUserIndex === -1 ? [] : messages.slice(firstUserIndex);
 
     const result = streamText({
-      model: openrouter.chat('nvidia/nemotron-3.5-lightning:free'),
+      model: openrouter.chat('inclusionai/ling-3.0-flash-sante:free'),
       system: SYSTEM_PROMPT.content,
       messages: convertToModelMessages(cleanedMessages, { tools }),
       tools,
