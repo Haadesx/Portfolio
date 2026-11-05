@@ -9,6 +9,22 @@ type Experience = {
 
 const experiences: Experience[] = [
     {
+        company: "Impruvon Health",
+        role: "AI & Software Development Intern",
+        period: "Summer 2026",
+        description: [
+            "Built a Python and FastMCP integration exposing nine typed tools for operational and transformed HL7 queries.",
+            "Implemented multi-location analytics across orders, dispenses, patient records, and clinical data.",
+            "Automated pull-request demos with Playwright recordings and validated narrated walkthroughs."
+        ],
+    },
+    {
+        company: "Adobe",
+        role: "Campus Ambassador",
+        period: "2025 – 2026",
+        description: ["Created content around Adobe Express and ran workshops for the Rutgers student community."],
+    },
+    {
         company: "Foundation for Ecological Security",
         role: "AI Intern",
         period: "Jan 2025 – May 2025",
@@ -23,10 +39,16 @@ const experiences: Experience[] = [
         role: "AI Intern",
         period: "Oct 2024 – Jan 2025",
         description: [
-            "Built fatigue prediction ML pipeline across ~20 iterations; achieved ~85% accuracy and ~0.25 MAE.",
+            "Built a fatigue prediction pipeline using heart-rate and step data from 135 participants; evaluated ~20 model iterations.",
             "Improved MAE by ~78% (1.17 → 0.25) using PyTorch model with CORAL layer + ordinal losses.",
             "Engineered features and used Runge–Kutta integration."
         ],
+    },
+    {
+        company: "IEEE GCET Student Branch",
+        role: "Secretary",
+        period: "Dec 2023 – Dec 2024",
+        description: ["Organized more than 39 technical and networking events and coordinated branch operations and communications."],
     },
 ];
 

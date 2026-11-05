@@ -4,7 +4,6 @@ import { CompileMDX } from "@/components/feature/CompileMDX"; // We will create 
 import { projects } from "@/data/projects";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { format } from "date-fns";
 
 export async function generateStaticParams() {
     // Generate params based on data/projects.ts or file system
@@ -73,17 +72,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {/* Main Content */}
             <div className="prose prose-invert prose-lg max-w-none prose-headings:text-primary prose-a:text-secondary hover:prose-a:text-secondary/80 prose-code:text-secondary prose-pre:bg-[#112240] prose-pre:border prose-pre:border-white/10">
                 <CompileMDX source={mdxData.content} />
-            </div>
-
-            <div className="border-t border-white/10 mt-16 pt-8">
-                <h3 className="font-mono text-secondary mb-4">Reproducibility</h3>
-                <div className="bg-[#112240] p-6 rounded-lg font-mono text-sm overflow-x-auto border border-white/5">
-                    <p className="opacity-60 mb-2"># Clone and run locally</p>
-                    <p className="text-secondary">$ git clone {projectMeta.githubUrl}</p>
-                    <p className="text-secondary">$ cd {slug}</p>
-                    <p className="text-secondary">$ pip install -r requirements.txt</p>
-                    <p className="text-secondary">$ python main.py</p>
-                </div>
             </div>
 
             <div className="pb-20"></div>

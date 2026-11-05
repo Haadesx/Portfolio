@@ -10,9 +10,9 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-center">Get In Touch</h1>
 
             <p className="text-center text-lg text-foreground/80 mb-12">
-                I’m currently looking for <strong>Fall 2025 Internship</strong> opportunities in AI/ML Engineering.
+                I’m interested in opportunities and conversations in machine learning and computer vision.
                 <br />
-                Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                Whether you have a question or just want to say hi, I’ll try my best to get back to you!
             </p>
 
             <div className="flex justify-center gap-8 mb-16">

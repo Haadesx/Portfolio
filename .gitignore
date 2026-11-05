@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local research and design-reference artifacts
+/.research/
+/DfWWldaTQTz.mp4
+
+# GitNexus local index
+/.gitnexus/

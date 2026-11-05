@@ -2,17 +2,18 @@
 export type GithubRepo = {
     id: number;
     name: string;
-    description: string;
+    description: string | null;
     html_url: string;
     language: string;
     stargazers_count: number;
     updated_at: string;
+    pushed_at: string;
     fork: boolean;
 };
 
 export async function getGithubRepos(): Promise<GithubRepo[]> {
     try {
-        const res = await fetch("https://api.github.com/users/Haadesx/repos?sort=updated&per_page=100", {
+        const res = await fetch("https://api.github.com/users/Haadesx/repos?sort=pushed&per_page=100", {
             next: { revalidate: 3600 }, // Cache for 1 hour
             headers: process.env.GITHUB_TOKEN
                 ? { Authorization: `token ${process.env.GITHUB_TOKEN}` }
@@ -26,7 +27,7 @@ export async function getGithubRepos(): Promise<GithubRepo[]> {
 
         const repos: GithubRepo[] = await res.json();
         // Filter out forks and non-useful repos if needed
-        return repos.filter(repo => !repo.fork && repo.description);
+        return repos.filter(repo => !repo.fork);
     } catch (error) {
         console.error("Error fetching GitHub repos:", error);
         return [];

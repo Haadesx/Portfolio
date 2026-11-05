@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Folder, Github, ExternalLink, ArrowRight } from "lucide-react";
+import { Folder, Github, ExternalLink } from "lucide-react";
 import { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -21,12 +21,12 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                     </div>
                     <div className="flex gap-4">
                         {project.githubUrl && (
-                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-secondary transition-colors">
+                            <a href={project.githubUrl} aria-label={`${project.title} source code`} target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-secondary transition-colors">
                                 <Github className="h-5 w-5" />
                             </a>
                         )}
                         {project.demoUrl && (
-                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-secondary transition-colors">
+                            <a href={project.demoUrl} aria-label={`${project.title} live demo`} target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-secondary transition-colors">
                                 <ExternalLink className="h-5 w-5" />
                             </a>
                         )}
@@ -34,7 +34,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                 </div>
 
                 <h3 className="mb-2 text-xl font-bold text-primary group-hover:text-secondary transition-colors">
-                    <Link href={`/projects/${project.slug}`} className="before:absolute before:inset-0 focus:outline-none">
+                    <Link href={`/projects/${project.slug}`} className="before:absolute before:inset-0">
                         {project.title}
                     </Link>
                 </h3>
