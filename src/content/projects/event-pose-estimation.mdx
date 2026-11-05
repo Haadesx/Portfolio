@@ -1,0 +1,15 @@
+---
+title: "Event-Based Arm Pose Estimation"
+---
+
+## Context
+
+This project explores arm pose estimation from event-camera data using the DHP19 and MoCA datasets.
+
+## Approach
+
+The pipeline generates pseudo-labels from source videos with MediaPipe and trains a modified PointNet model to regress joint coordinates from event point clouds. It includes training and inference visualization scripts.
+
+## Scope and limitations
+
+The datasets are not included in the repository, and the generated labels are estimates rather than independent ground truth. The repository describes the pipeline but does not report a validated accuracy figure.

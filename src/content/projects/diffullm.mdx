@@ -1,0 +1,17 @@
+---
+title: "DiffuLLM: Discrete Diffusion for Text"
+---
+
+## Context
+
+DiffuLLM is Varesh Patel’s system in a collaborative comparative study of three discrete diffusion language models trained on recipe corpora.
+
+## Approach
+
+A bidirectional transformer uses D3PM-style absorbing-mask corruption and masked reconstruction. Inference iteratively unmasks tokens to refine a generated sequence.
+
+The model was trained for over 500,000 iterations using PyTorch Distributed Data Parallel and SLURM. Experiments compared sampling settings.
+
+## Scope and limitations
+
+The work is a research comparison on recipe data; results should be interpreted within that domain and experimental setup. Long-context repetition and global coherence remain documented failure modes.

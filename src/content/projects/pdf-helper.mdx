@@ -1,0 +1,25 @@
+---
+title: "PDFhelper"
+---
+
+## Problem
+Managing and extracting insights from large collections of PDF documents is a bottleneck for research. Standard keyword search often misses semantic context.
+
+## Solution: RAG Pipeline
+**PDFhelper** is a Retrieval-Augmented Generation (RAG) system that uses vector embeddings to understand the "meaning" of queries.
+
+### Tech Stack
+- **Embeddings:** Hugging Face `all-MiniLM-L6-v2`.
+- **Vector DB:** Qdrant (local Docker instance).
+- **LLM:** LLaMA 3.2 (via Ollama) for generation.
+- **Orchestration:** LangChain.
+
+## Workflow
+1. **Ingestion:** PDFs are parsed, chunked (500 chars with 50 overlap), and embedded.
+2. **Storage:** Vectors stored in Qdrant collections.
+3. **Retrieval:** User query is embedded; Top-K cosine similarity match found.
+4. **Generation:** Retrieved chunks + Query sent to LLaMA 3.2 to generate the answer.
+
+## Impact
+- Reduced search time by **~60%** for technical documentation.
+- Enable "Chat with your Data" functionality locally without data leaving the machine.

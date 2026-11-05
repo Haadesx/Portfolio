@@ -1,0 +1,53 @@
+---
+title: "IBIS 2.0"
+---
+
+## Overview
+The **IBIS 2.0 (Intelligent Bird Identification System)** is an enterprise-scale AI solution developed for the **Foundation for Ecological Security**. The system automates the classification of bird species from a massive, unstructured dataset of over **710GB** images across **1,150 species**.
+
+We replaced manual classification workflows with a deep learning pipeline, achieving **79% validation accuracy** and providing researchers with both a CLI and a GUI for rapid inference.
+
+## Architecture
+The system follows a modular architecture designed for scalability and reproducibility:
+
+```mermaid
+flowchart LR
+    A["Raw Data (710GB)"] --> B["Preprocessing"]
+    B --> C["Stage 1: Species Detection"]
+    C --> D["Stage 2: Classification"]
+    D --> E["Inference Engine (Gradio/CLI)"]
+    E --> F["Researcher Report"]
+```
+
+## Data Pipeline
+- **Volume:** 710GB of raw ecological survey images.
+- **Classes:** 1,150 distinct bird species (highly imbalanced).
+- **Preprocessing:**
+  - Automated resizing to 224x224.
+  - Normalization using ImageNet means/stds.
+  - Custom augmentation (RandomHorizontalFlip, ColorJitter) to handle lighting variations in field photography.
+
+## Model Approach
+We employed a **ResNet-50** backbone pretrained on ImageNet, fine-tuned on our dataset using **PyTorch**.
+
+### Training Details:
+- **Optimizer:** AdamW with weight decay `1e-4`.
+- **Scheduler:** OneCycleLR for faster convergence.
+- **Loss Function:** CrossEntropyLoss with class weights to mitigate imbalance.
+- **Hardware:** Trained on NVIDIA A100 GPUs.
+
+## Results
+The model demonstrated strong performance on the validation set:
+
+| Metric | Score | Note |
+|:-------|:------|:-----|
+| Accuracy | **79%** | Top-1 Accuracy |
+| Top-5 Acc | **92%** | Correct species in top 5 predictions |
+| F1-Score | **0.76** | Macro-average |
+
+*Note: The confusion matrix indicates high confusion among visually similar sub-species (e.g., sparrows), which is a known challenge in ornithology.*
+
+## Deployment
+We delivered the model as a self-contained package with:
+1. **Gradio Interface:** For non-technical researchers to upload images and visualize predictions.
+2. **CLI Tool:** For batch processing entire folders of survey data.
