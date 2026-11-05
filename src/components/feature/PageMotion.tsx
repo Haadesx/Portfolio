@@ -3,6 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
+// Global pacing multiplier for the scroll-decode sequence. 1.3 = 30% slower.
+const DECODE_SLOWDOWN = 1.3;
+
 export function PageMotion() {
   const pathname = usePathname();
 
@@ -73,8 +76,8 @@ export function PageMotion() {
       let stopped = false;
       let lastTextUpdate = 0;
       const started = performance.now() + delay;
-      const boxDuration = 420;
-      const textDuration = Math.min(1610, Math.max(910, (element.textContent?.trim().length || 0) * 5.6));
+      const boxDuration = 420 * DECODE_SLOWDOWN;
+      const textDuration = Math.min(1610, Math.max(910, (element.textContent?.trim().length || 0) * 5.6)) * DECODE_SLOWDOWN;
       const total = textNodes.reduce((length, item) => length + item.value.length, 0);
       const alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       const finish = () => {
