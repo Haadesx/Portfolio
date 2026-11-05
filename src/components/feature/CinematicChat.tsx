@@ -116,7 +116,7 @@ export function CinematicChat() {
         </div>
         <div className="chat-heading-meta">
           <span>MODEL / OPENROUTER</span>
-          <span>TOOLS / 9</span>
+          <span>TOOLS / 8</span>
           <span>TRANSCRIPT / PRIVATE</span>
           <Link href="/resume.pdf">RÉSUMÉ ↗</Link>
         </div>

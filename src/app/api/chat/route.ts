@@ -9,7 +9,6 @@ import { getProjects } from './tools/getProjects';
 import { getResume } from './tools/getResume';
 import { getSkills } from './tools/getSkills';
 import { getSports } from './tools/getSports';
-import { getWeather } from './tools/getWeather';
 
 export const maxDuration = 60;
 
@@ -49,7 +48,6 @@ export async function POST(req: Request) {
       getSports,
       getCrazy,
       getInternship,
-      getWeather,
     };
 
     const firstUserIndex = (messages ?? []).findIndex(
