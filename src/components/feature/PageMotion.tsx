@@ -16,7 +16,7 @@ export function PageMotion() {
       ".editorial > section:not(.hero) :is(h2,h3,h4,p,blockquote,li,summary,a,button,strong,span,[data-decode]), main > .container :is(h1,h2,h3,h4,p,li,a,button), main > article :is(h1,h2,h3,h4,p,li,a,button)"
     ));
     const targets = candidates.filter((element) => {
-      if (element.closest(".sr-only, [aria-hidden='true'], svg") || !element.textContent?.trim()) return false;
+      if (element.closest(".sr-only, [aria-hidden='true'], svg, .experience-timeline, .experience-note") || !element.textContent?.trim()) return false;
       return !candidates.some((ancestor) => ancestor !== element && ancestor.contains(element));
     });
     const pending = new Map<HTMLElement, string>();

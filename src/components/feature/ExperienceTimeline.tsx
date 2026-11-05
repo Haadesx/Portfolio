@@ -1,17 +1,19 @@
-
-
 type Experience = {
     company: string;
     role: string;
     period: string;
+    start: string;
     description: string[];
 };
 
+// Ordered newest start date first. Adobe (2025–2026) and Foundation (Jan–May 2025)
+// overlap; when start dates are the same, the previously published order is kept.
 const experiences: Experience[] = [
     {
         company: "Impruvon Health",
         role: "AI & Software Development Intern",
         period: "Summer 2026",
+        start: "2026",
         description: [
             "Built a Python and FastMCP integration exposing nine typed tools for operational and transformed HL7 queries.",
             "Implemented multi-location analytics across orders, dispenses, patient records, and clinical data.",
@@ -22,12 +24,14 @@ const experiences: Experience[] = [
         company: "Adobe",
         role: "Campus Ambassador",
         period: "2025 – 2026",
+        start: "2025",
         description: ["Created content around Adobe Express and ran workshops for the Rutgers student community."],
     },
     {
         company: "Foundation for Ecological Security",
         role: "AI Intern",
         period: "Jan 2025 – May 2025",
+        start: "2025-01",
         description: [
             "Built AI bird classification system for IBIS 2.0; handled ~710GB image dataset, ~1,150 species.",
             "Developed a two-stage deep learning pipeline achieving ~79% validation accuracy.",
@@ -38,6 +42,7 @@ const experiences: Experience[] = [
         company: "Arcascope",
         role: "AI Intern",
         period: "Oct 2024 – Jan 2025",
+        start: "2024-10",
         description: [
             "Built a fatigue prediction pipeline using heart-rate and step data from 135 participants; evaluated ~20 model iterations.",
             "Improved MAE by ~78% (1.17 → 0.25) using PyTorch model with CORAL layer + ordinal losses.",
@@ -48,31 +53,38 @@ const experiences: Experience[] = [
         company: "IEEE GCET Student Branch",
         role: "Secretary",
         period: "Dec 2023 – Dec 2024",
+        start: "2023-12",
         description: ["Organized more than 39 technical and networking events and coordinated branch operations and communications."],
     },
 ];
 
 export function ExperienceTimeline() {
     return (
-        <div className="space-y-12">
-            {experiences.map((exp, index) => (
-                <div key={index} className="relative pl-6 border-l border-secondary/30">
-                    <div className="absolute -left-1.5 top-0 h-3 w-3 rounded-full bg-secondary" />
-                    <h3 className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 text-xl font-bold text-primary">
-                        <span>{exp.role}</span>
-                        <span className="text-secondary text-sm sm:text-lg">@ {exp.company}</span>
-                    </h3>
-                    <p className="mb-4 font-mono text-xs text-foreground/60">{exp.period}</p>
-                    <ul className="space-y-2 text-sm text-foreground/80">
-                        {exp.description.map((desc, i) => (
-                            <li key={i} className="flex gap-2">
-                                <span className="text-secondary">▹</span>
-                                {desc}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
-        </div>
+        <>
+            <ol className="experience-timeline" aria-label="Professional experience, newest first">
+                {experiences.map((exp) => (
+                    <li className="experience-entry" key={`${exp.company}-${exp.role}`}>
+                        <time className="experience-date" dateTime={exp.start}>
+                            {exp.period}
+                        </time>
+                        <span className="experience-rail" aria-hidden="true">
+                            <span className="experience-marker" />
+                        </span>
+                        <div className="experience-content">
+                            <h3>{exp.role}</h3>
+                            <p className="experience-company">{exp.company}</p>
+                            <ul>
+                                {exp.description.map((desc) => (
+                                    <li key={desc}>{desc}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </li>
+                ))}
+            </ol>
+            <p className="experience-note">
+                Ordered by start date, newest first. Overlapping ranges reflect concurrent roles.
+            </p>
+        </>
     );
 }

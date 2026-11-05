@@ -1,46 +1,95 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
+import { CopyEmailButton } from "@/components/feature/CopyEmailButton";
+
+const email = "workmailvaresh@gmail.com";
+const linkedin = "https://www.linkedin.com/in/vareshpatel/";
+const github = "https://github.com/Haadesx";
 
 export const metadata = {
-    title: "Contact | Varesh Patel",
+  title: "Contact | Varesh Patel",
+  description:
+    "Contact Varesh Patel about machine learning, computer vision, research, and applied AI work.",
 };
 
 export default function ContactPage() {
-    return (
-        <div className="container mx-auto px-4 sm:px-8 py-12 max-w-2xl min-h-[70vh] flex flex-col justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-center">Get In Touch</h1>
+  return (
+    <div className="contact-page">
+      <section className="contact-hero" aria-labelledby="contact-title">
+        <p className="eyebrow">CONTACT / DIRECT LINE</p>
+        <h1 id="contact-title">
+          Let&apos;s build something
+          <br />
+          <span>worth understanding.</span>
+        </h1>
+        <p>
+          I&apos;m open to machine learning and computer vision roles, research collaborations,
+          and applied AI problems. Email is the most direct way to reach me.
+        </p>
+      </section>
 
-            <p className="text-center text-lg text-foreground/80 mb-12">
-                I’m interested in opportunities and conversations in machine learning and computer vision.
-                <br />
-                Whether you have a question or just want to say hi, I’ll try my best to get back to you!
-            </p>
+      <div className="contact-grid">
+        <section className="contact-primary" aria-labelledby="email-heading">
+          <p className="meta-label" id="email-heading">
+            EMAIL / PRIMARY
+          </p>
+          <a className="contact-email" href={`mailto:${email}`}>
+            {email}
+          </a>
+          <div className="contact-actions">
+            <CopyEmailButton email={email} />
+            <a className="button-primary" href={`mailto:${email}`}>
+              Open email app <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <p className="contact-hint">
+            The address is selectable if you prefer to copy it manually. No forms or third-party
+            services are involved.
+          </p>
+        </section>
 
-            <div className="flex justify-center gap-8 mb-16">
-                <a href="mailto:workmailvaresh@gmail.com" className="flex flex-col items-center gap-2 group">
-                    <div className="p-4 rounded-full bg-card border border-white/10 group-hover:border-secondary/50 group-hover:text-secondary transition-all">
-                        <Mail className="w-8 h-8" />
-                    </div>
-                    <span className="text-sm font-mono">Email</span>
-                </a>
-                <a href="https://www.linkedin.com/in/vareshpatel/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                    <div className="p-4 rounded-full bg-card border border-white/10 group-hover:border-secondary/50 group-hover:text-secondary transition-all">
-                        <Linkedin className="w-8 h-8" />
-                    </div>
-                    <span className="text-sm font-mono">LinkedIn</span>
-                </a>
-                <a href="https://github.com/Haadesx" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                    <div className="p-4 rounded-full bg-card border border-white/10 group-hover:border-secondary/50 group-hover:text-secondary transition-all">
-                        <Github className="w-8 h-8" />
-                    </div>
-                    <span className="text-sm font-mono">GitHub</span>
-                </a>
-            </div>
+        <section className="contact-secondary" aria-labelledby="linkedin-heading">
+          <p className="meta-label" id="linkedin-heading">
+            LINKEDIN / ALTERNATIVE
+          </p>
+          <a
+            className="contact-link"
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            linkedin.com/in/vareshpatel <span aria-hidden="true">↗</span>
+          </a>
+          <p>For a longer conversation, send me a message on LinkedIn.</p>
+        </section>
 
-            <div className="text-center">
-                <a href="mailto:workmailvaresh@gmail.com" className="inline-block px-8 py-4 rounded-md border border-secondary text-secondary font-mono hover:bg-secondary/10 transition-colors">
-                    Say Hello
-                </a>
-            </div>
-        </div>
-    );
+        <section className="contact-meta" aria-label="Additional contact details">
+          <div>
+            <span className="meta-label">BASED IN</span>
+            <p>New Brunswick, NJ</p>
+          </div>
+          <div>
+            <span className="meta-label">RÉSUMÉ</span>
+            <a className="text-link" href="/resume.pdf">
+              View PDF <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div>
+            <span className="meta-label">GITHUB</span>
+            <a
+              className="text-link"
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Haadesx <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <p className="contact-back">
+        Prefer to see the work first? <Link href="/projects">Explore the case studies ↗</Link>
+      </p>
+    </div>
+  );
 }
