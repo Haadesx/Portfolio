@@ -17,7 +17,7 @@ export default function SiteLayout({ children }: Readonly<{ children: React.Reac
           {children}
         </main>
         <Footer />
-        <Link href="/chat" className="chat-launcher" aria-label="Ask AI about my work">
+        <Link href="/chat" className="chat-launcher" aria-label="Ask AI about my work" title="Ask AI about my work">
           <MessageCircle aria-hidden="true" size={21} />
           <span className="chat-launcher-copy">
             <strong>Ask AI</strong>

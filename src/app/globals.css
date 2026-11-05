@@ -310,4 +310,14 @@ pre {
 @media(max-width:400px){.contact-hero h1{font-size:clamp(2.6rem,12vw,3rem)}}
 .site-header nav a{white-space:nowrap}
 @media(max-width:600px){.skill-card:last-child{grid-column:1/-1}}
-@media(max-width:360px){.header-inner{padding:0 4%}.brand{font-size:23px}.site-header nav{gap:7px}.site-header nav a{font-size:8px;letter-spacing:.03em}}
+
+/* Compact launcher only where it clears the content column; the nav already offers Ask AI below 1440px */
+.chat-launcher{width:56px;min-height:56px;padding:0;gap:0;justify-content:center;border-radius:50%;right:12px;bottom:12px}
+.chat-launcher-copy,.chat-launcher-arrow{display:none}
+@media(max-width:1439px){.chat-launcher{display:none}}
+body:has(.contact-page) .chat-launcher{display:none}
+
+/* Readable mobile navigation with a larger tap target */
+@media(max-width:1024px){.site-header nav a{padding:8px 0}}
+@media(max-width:540px){.site-header nav a{font-size:10px;padding:12px 0}}
+@media(max-width:360px){.header-inner{padding:0 3.5%}.brand{font-size:23px}.site-header nav{gap:5px}.site-header nav a{font-size:10px;letter-spacing:0}}
