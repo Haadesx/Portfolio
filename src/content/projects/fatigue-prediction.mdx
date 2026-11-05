@@ -1,0 +1,29 @@
+---
+title: "Fatigue Prediction"
+---
+
+## Context
+During my internship at **Arcascope**, I tackled the challenge of quantifying and predicting daily fatigue using data from wearable devices. Fatigue is subjective and noisy, making standard regression approaches prone to overfitting.
+
+## Methodology
+We approached this as an **ordinal regression** problem rather than simple regression or classification.
+
+### Key Innovations:
+1. **CORAL (Consistent Rank Logits) Layer:**
+   We replaced the standard output layer with a CORAL layer to enforce the ordinal nature of fatigue scores (e.g., Scale 1-10).
+   
+2. **Loss Function Engineering:**
+   Combined `CornLoss` (Conditional Ordinal Regression) with standard MSE to penalize large deviations while respecting rank order.
+
+3. **Physics-Informed Features:**
+   Integrated **Runge-Kutta** methods to model circadian rhythm dynamics directly into the feature set.
+
+## Results vs Baseline
+We iterated through ~20 architectures. The final model significantly outperformed the baseline:
+
+| Metric | Baseline (Linear Reg) | Deep Ordinal Model | Improvement |
+|:-------|:---------------------|:-------------------|:------------|
+| MAE    | 1.17                 | **0.25**           | **78%**     |
+| Accuracy| 52% (within ±1)     | **85%**            | +33%        |
+
+This reduction in Mean Absolute Error (MAE) allowed the system to provide actionable daily alerts to users.

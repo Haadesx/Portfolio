@@ -1,0 +1,15 @@
+---
+title: "WebGPU Edge AI Benchmark"
+---
+
+## Context
+
+This collaborative CS553 project compares quantized language models running in a browser with cloud-hosted models. The repository credits Ethan Nguyen, Varesh Patel, and Najeeb Quadri.
+
+## Approach
+
+A React and TypeScript interface runs browser inference using WebGPU and WebLLM, while a server proxies cloud requests. A fixed workload of 16 prompts supports comparisons of time to first token, throughput, total latency, and output quality.
+
+## Scope and limitations
+
+Browser memory figures are approximations: the browser does not expose true GPU VRAM usage. Results depend on the device, model, network, and workload, and the repository does not establish a universal winner between edge and cloud inference.

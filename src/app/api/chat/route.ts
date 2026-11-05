@@ -9,7 +9,6 @@ import { getProjects } from './tools/getProjects';
 import { getResume } from './tools/getResume';
 import { getSkills } from './tools/getSkills';
 import { getSports } from './tools/getSports';
-import { getWeather } from './tools/getWeather';
 
 export const maxDuration = 60;
 
@@ -49,7 +48,6 @@ export async function POST(req: Request) {
       getSports,
       getCrazy,
       getInternship,
-      getWeather,
     };
 
     const firstUserIndex = (messages ?? []).findIndex(
@@ -59,7 +57,7 @@ export async function POST(req: Request) {
       firstUserIndex === -1 ? [] : messages.slice(firstUserIndex);
 
     const result = streamText({
-      model: openrouter.chat('inclusionai/ling-3.0-flash-sante:free'),
+      model: openrouter.chat('nvidia/nemotron-3.5-lightning:free'),
       system: SYSTEM_PROMPT.content,
       messages: convertToModelMessages(cleanedMessages, { tools }),
       tools,

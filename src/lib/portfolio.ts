@@ -10,7 +10,7 @@ export const portfolio = {
   links: {
     linkedin: "https://www.linkedin.com/in/vareshpatel/?skipRedirect=true",
     github: "https://github.com/Haadesx",
-    resume: "/Varesh_Resume_ML.pdf",
+    resume: "/resume.pdf",
   },
   education: [
     {

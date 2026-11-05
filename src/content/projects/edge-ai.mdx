@@ -1,0 +1,15 @@
+---
+title: "Zypher EdgeAI Demo"
+---
+
+## Context
+
+This edge AI demo runs gesture recognition on an emulated Arm Cortex-M3 with Zephyr RTOS and TensorFlow Lite Micro.
+
+## Approach
+
+The system uses a quantized model, RTOS threads, structured UART output, runtime diagnostics and a QEMU-based test workflow. It recognizes four gesture classes using accelerometer input.
+
+## Scope and limitations
+
+The documented QEMU demo uses mock sensor data; it is not evidence of physical-device or field performance.

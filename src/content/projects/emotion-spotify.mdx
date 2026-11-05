@@ -1,0 +1,22 @@
+---
+title: "Emotion Spotify Clone"
+---
+
+## Concept
+A music player that knows how you feel. Instead of manually selecting a playlist, the app scans your face, determines your emotion, and cues the perfect track.
+
+## Vision Pipeline
+We custom-built a simplistic Convolutional Neural Network (CNN) trained on the **FER-2013** dataset (Facial Emotion Recognition).
+
+### Model Arch
+- 4 Conv2D Layers (32, 64, 128, 128 filters)
+- MaxPolling and Dropout (0.25) to prevent overfitting.
+- Dense Output Layer (7 classes: Angry, Disgust, Fear, Happy, Sad, Surprise, Neutral).
+
+## Integration
+- **Frontend:** React application.
+- **Backend:** Flask API hosting the TensorFlow model.
+- **Workflow:** Webcam captures frame -> sent to API -> Model predicts "Happy" -> Spotify API plays "Upbeat Mix".
+
+## Accuracy
+The custom CNN achieved **95.83% accuracy** on the test set, outperforming pre-trained VGG16 transfer learning attempts on this specific lightweight task.

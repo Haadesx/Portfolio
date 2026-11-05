@@ -1,6 +1,6 @@
 # Varesh Patel Portfolio
 
-AI-native portfolio built with Next.js and OpenRouter.
+Cinematic editorial portfolio with a tool-grounded AI assistant, built with Next.js, Tailwind CSS, and OpenRouter.
 
 ## Setup
 
@@ -10,17 +10,41 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Required environment variables:
-
-```bash
-OPENROUTER_API_KEY=...
-APP_URL=http://localhost:3000
-```
-
 Open `http://localhost:3000`.
 
-## What is included
+## Environment variables
 
-- One-page landing page for background, projects, experience, and contact
-- `/chat` page for AI Q&A grounded in resume and portfolio data
-- OpenRouter-backed API route using tool calls for projects, resume, and experience context
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `OPENROUTER_API_KEY` | Yes | Chat and assistant requests |
+| `APP_URL` | Recommended | OpenRouter referer header, e.g. `http://localhost:3000` |
+| `GITHUB_TOKEN` | Optional | Higher GitHub API rate limits for the project archive |
+| `ADMIN_PASSWORD` | Optional | Enables the unlisted `/admin` project config editor |
+
+## Scripts
+
+```bash
+npm run dev    # development server
+npm run build  # production build
+npm run start  # serve the production build
+npm run lint   # ESLint
+```
+
+## Routes
+
+- `/` — cinematic home: blueprint intro, scroll-driven bounding boxes, project evidence
+- `/projects` — case-study archive plus GitHub repository index
+- `/projects/[slug]` — MDX case studies under `src/content/projects`
+- `/about`, `/contact` — background and contact details
+- `/chat` — tool-calling assistant grounded in portfolio data
+- `/admin` — optional project config editor (unlisted)
+- `/sitemap.xml`, `/robots.txt` — metadata routes
+
+## API routes
+
+- `POST /api/chat` — OpenRouter tool-calling chat (nine portfolio tools)
+- `GET /api/projects` — curated, visible GitHub projects
+- `GET /api/github/repos`, `GET /api/github-stars` — GitHub helpers
+- `POST /api/admin/auth`, `GET|POST /api/admin/projects` — optional admin config API
+
+> The admin editor persists to `src/data/projects-config.json` on the local filesystem. That works for local authoring, but serverless production filesystems are read-only, so treat the editor as a local tool until a Git-backed persistence layer exists.

@@ -3,11 +3,16 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     try {
-        const res = await fetch('https://api.github.com/users/bottyash/repos?per_page=100&sort=updated', {
-            headers: {
-                Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-                Accept: 'application/vnd.github.v3+json',
-            },
+        const headers: HeadersInit = {
+            Accept: 'application/vnd.github.v3+json',
+        };
+
+        if (process.env.GITHUB_TOKEN) {
+            headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+        }
+
+        const res = await fetch('https://api.github.com/users/Haadesx/repos?per_page=100&sort=updated', {
+            headers,
             next: { revalidate: 3600 }, // cache for 1 hour
         });
 

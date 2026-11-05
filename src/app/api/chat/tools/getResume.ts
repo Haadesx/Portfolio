@@ -6,6 +6,6 @@ export const getResume = tool({
     'This tool show my resume.',
   inputSchema: z.object({}),
   execute: async () => {
-    return 'You can download my resume here: [Varesh Patel - Resume (PDF)](/Varesh_Resume_ML.pdf)';
+    return 'You can download my resume here: [Varesh Patel - Resume (PDF)](/resume.pdf)';
   },
 });
