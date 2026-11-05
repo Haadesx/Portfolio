@@ -1,21 +1,14 @@
 import { Analytics } from '@vercel/analytics/react';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { cn } from '@/lib/utils';
+import type { Metadata, Viewport } from 'next';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
-// Load Inter font for non-Apple devices
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
 export const metadata: Metadata = {
-  title: 'Varesh Patel Portfolio',
+  metadataBase: new URL('https://www.initvaresh.com'),
+  title: 'Varesh Patel | Machine Learning & Computer Vision Engineer',
   description:
-    'Interactive AI-powered portfolio of Varesh Patel — machine learning engineer specializing in applied AI, computer vision, and agentic systems',
+    'Machine learning and computer vision projects, research, and experience by Varesh Patel.',
   keywords: [
     'Varesh Patel',
     'Portfolio',
@@ -23,7 +16,6 @@ export const metadata: Metadata = {
     'Applied AI',
     'Computer Vision',
     'Agentic Systems',
-    'OpenRouter',
     'Next.js',
     'React',
   ],
@@ -37,9 +29,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://github.com/Haadesx',
-    title: 'Varesh Patel Portfolio',
-    description: 'Interactive AI-powered portfolio — ML engineer',
+    url: 'https://www.initvaresh.com',
+    title: 'Varesh Patel | Machine Learning & Computer Vision Engineer',
+    description:
+      'Machine learning and computer vision projects, research, and experience by Varesh Patel.',
     siteName: 'Varesh Patel Portfolio',
     images: [
       {
@@ -52,20 +45,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Varesh Patel Portfolio',
-    description: 'Interactive AI-powered portfolio — ML engineer',
+    title: 'Varesh Patel | Machine Learning & Computer Vision Engineer',
+    description:
+      'Machine learning and computer vision projects, research, and experience by Varesh Patel.',
     creator: '@Haadesx',
     images: ['/WhatsApp Image 2026-04-23 at 15.37.39.jpeg'],
   },
   icons: {
-    icon: [
-      {
-        url: '/favicon.ico',
-        sizes: 'any',
-      },
-    ],
+    icon: [{ url: '/favicon.ico', sizes: 'any' }],
     shortcut: '/favicon.ico',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#101010',
 };
 
 export default function RootLayout({
@@ -75,25 +70,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
-      <body
-        className={cn(
-          // "min-h-screen bg-background font-sans antialiased",
-          "min-h-screen bg-white text-black dark:bg-black dark:text-white font-sans antialiased transition-colors duration-500 ease-in-out",
-          inter.variable,
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-        >
-          <main className="flex min-h-screen flex-col">
-            {children}
-          </main>
+      <body className="font-sans antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          {children}
           <Toaster />
         </ThemeProvider>
         <Analytics />
