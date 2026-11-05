@@ -160,12 +160,15 @@ export function CinematicChat() {
                   const output = toolOutput(part);
                   if (!output) return null;
                   return (
-                    <div key={part.toolCallId} className="chat-tool-result">
-                      <span className="meta-label">TOOL / {toolName(part)}</span>
+                    <details key={part.toolCallId} className="chat-tool-result">
+                      <summary>
+                        <span className="meta-label">TOOL / {toolName(part)}</span>
+                        <span aria-hidden="true">+</span>
+                      </summary>
                       <div className="chat-markdown">
                         <Markdown>{output}</Markdown>
                       </div>
-                    </div>
+                    </details>
                   );
                 })}
                 {text ? (

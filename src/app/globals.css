@@ -212,3 +212,28 @@ pre {
   word-wrap: normal;
   overflow-x: auto;
 }
+
+.chat-tool-result summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  padding: 2px 0;
+}
+.chat-tool-result summary::-webkit-details-marker {
+  display: none;
+}
+.chat-tool-result summary .meta-label {
+  color: var(--secondary);
+}
+.chat-tool-result[open] {
+  padding-bottom: 10px;
+}
+.chat-tool-result[open] summary span:last-child {
+  transform: rotate(45deg);
+}
+.chat-tool-result .chat-markdown {
+  margin-top: 12px;
+}
