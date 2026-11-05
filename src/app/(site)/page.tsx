@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import { ExperienceTimeline } from "@/components/feature/ExperienceTimeline";
@@ -32,7 +33,7 @@ export default function Home() {
   const more = projects.filter((p) => p.slug !== "ibis-2-0" && p.slug !== "fatigue-prediction")
     .sort((a, b) => (recentOrder.indexOf(a.slug) < 0 ? Infinity : recentOrder.indexOf(a.slug)) - (recentOrder.indexOf(b.slug) < 0 ? Infinity : recentOrder.indexOf(b.slug)));
   const metrics = [
-    [{ value: "710 GB", label: "IMAGE DATASET" }, { value: "1,150", label: "BIRD SPECIES" }, { value: "79%", label: "VALIDATION TOP-1" }, { value: "92%", label: "VALIDATION TOP-5" }],
+    [{ value: "79%", label: "VALIDATION TOP-1" }, { value: "92%", label: "VALIDATION TOP-5" }, { value: "1,150", label: "BIRD SPECIES" }, { value: "710 GB", label: "IMAGE CORPUS" }],
     [{ value: "1.17 → 0.25", label: "REPORTED MAE" }, { value: "78%", label: "MAE REDUCTION" }, { value: "85%", label: "WITHIN ONE POINT" }, { value: "~20", label: "MODEL ITERATIONS" }],
   ];
   return (
@@ -40,32 +41,37 @@ export default function Home() {
       <section className="hero" aria-labelledby="hero-title">
         <HeroIntro />
         <div className="blueprint" aria-hidden="true"><i /><i /><i /><i /><span /><span /><span /></div>
-        <div className="hero-topline"><span>Selected work / Varesh Patel</span><span>Machine learning & computer vision</span></div>
+        <div className="hero-topline"><span>Varesh Patel / Portfolio 2026</span><span>Machine learning &amp; computer vision</span></div>
         <div className="outline-word" aria-hidden="true">VARESH</div>
         <div className="hero-grid">
           <div className="hero-intro">
-            <p className="eyebrow">ML ENGINEER / COMPUTER VISION</p>
-            <h1 id="hero-title"><span className="sr-only">Varesh Patel — Machine Learning and Computer Vision Engineer. </span>Making data<br /><em>make sense.</em></h1>
-            <p>I build machine learning systems that turn complex visual and time-series data into useful, measurable results.</p>
-            <div className="hero-actions"><a className="button-primary" href="#selected-work">Explore my work <span>↗</span></a><Link className="text-link" href="/chat">Ask about my work ↗</Link><a className="text-link" href="/resume.pdf">View résumé ↗</a></div>
+            <p className="eyebrow">ML &amp; CV ENGINEER / RESEARCHER / BUILDER</p>
+            <h1 id="hero-title"><span className="sr-only">Varesh Patel — Machine Learning and Computer Vision Engineer, researcher, and builder. </span>Making data<br /><em>make sense.</em></h1>
+            <p className="hero-lede">I’m Varesh — I build computer vision and predictive systems, and the interfaces that make them useful.</p>
+            <p className="hero-note">Research-minded, product-obsessed. I care about evidence, evaluation, and the gap between a model that works and a tool people trust.</p>
+            <div className="hero-actions"><a className="button-primary" href="#selected-work">Explore selected work <span>↗</span></a><Link className="text-link" href="/chat">Ask about my work ↗</Link><a className="text-link" href="/resume.pdf">View résumé ↗</a></div>
+            <p className="hero-index">16 CASE STUDIES / 2 FLAGSHIP SYSTEMS</p>
           </div>
-          <div className="identity-tile" aria-label="Varesh Patel, machine learning engineer">
-            <div className="tile-cross">✳</div><div className="tile-grid" aria-hidden="true" />
+          <div className="identity-tile">
+            <Image src="/portrait.jpg" alt="Varesh Patel" fill priority sizes="(max-width: 800px) 100vw, 33vw" className="identity-photo" />
+            <div className="tile-grid" aria-hidden="true" />
+            <span className="tile-label">IDENTITY / 001</span>
             <div className="tile-bottom"><span>V / P</span><span>ENGINEERING<br />WITH INTENT</span></div>
           </div>
-          <div className="hero-side"><div><span className="meta-label">FOCUS / 01</span><h2>Vision<br />systems</h2><p>Classification, detection, and visual understanding.</p></div><div><span className="meta-label">FOCUS / 02</span><h2>Predictive<br />models</h2><p>Learning from time-series and real-world data.</p></div><a href="#selected-work">SCROLL TO EXPLORE <span>↓</span></a></div>
+          <div className="hero-side">
+            <div><span className="meta-label">FOCUS / 01</span><h2>Vision<br />systems</h2><p>Classification, detection, and visual understanding.</p></div>
+            <div><span className="meta-label">FOCUS / 02</span><h2>Predictive<br />models</h2><p>Learning from time-series and real-world signals.</p></div>
+            <a href="#selected-work">SCROLL TO EXPLORE <span>↓</span></a>
+          </div>
         </div>
         <div className="nameplate"><span>VARESH PATEL</span><span>ML / CV ENGINEER</span></div>
-      </section>
-      <section className="proof-strip" aria-label="Selected project evidence">
-        <div><strong data-decode>710 GB</strong><p>IBIS image dataset</p></div><div><strong data-decode>1,150</strong><p>Bird species in IBIS</p></div><div><strong data-decode>79%</strong><p>IBIS validation top-1 accuracy</p></div><div><strong data-decode>0.25</strong><p>Reported fatigue prediction MAE</p></div>
       </section>
       <section className="editorial-section reference-about" id="background">
         <div className="reference-heading" data-reveal><p className="eyebrow">BACKGROUND / THE APPROACH</p><h2 data-decode>Background &amp; philosophy<span>.</span></h2><p>Building reliable systems at the intersection of machine learning and the real world.</p></div>
         <div className="about-columns"><div data-reveal><p>My work moves from unstructured data to models people can actually use. From identifying bird species in the field to learning from noisy wearable signals, I care about the complete system: the data, the evaluation, and the interface around the model.</p><p>I’m an M.S. computer science candidate at Rutgers (expected May 2027, GPA 3.98/4.00), working across computer vision, diffusion language modeling, representation editing, and applied AI systems.</p><blockquote>Make the result measurable. Make the system understandable.</blockquote><Link className="text-link" href="/about">Read my background ↗</Link></div><div className="principle-list" data-reveal><div><span>01 / DATA</span><h3>Work from evidence</h3><p>Understand the dataset before making a claim about a model.</p></div><div><span>02 / EVALUATION</span><h3>Measure what matters</h3><p>Compare against baselines and make limitations visible.</p></div><div><span>03 / DELIVERY</span><h3>Build for people</h3><p>Turn research into workflows others can inspect and use.</p></div></div></div>
       </section>
       <section className="editorial-section reference-work" id="selected-work"><span id="projects" />
-        <div className="reference-heading" data-reveal><p className="eyebrow">ENGINEERING / SELECTED WORK</p><h2 data-decode>Flagship projects<span>.</span></h2><p>Real datasets, rigorous evaluation, and systems designed to be useful beyond a notebook.</p></div>
+        <div className="reference-heading" data-reveal><p className="eyebrow">ENGINEERING / SELECTED WORK</p><h2 data-decode>Flagship projects<span>.</span></h2><p>Research-grade evaluation, honest limitations, and systems designed to be used.</p></div>
         <div className="flagship-stack">{featured.map((project, index) => <article className="flagship-panel" key={project.slug} data-reveal>
           <div className="panel-top"><span className="signal-pill">● {index === 0 ? "COMPUTER VISION" : "PREDICTIVE MODELING"}</span><span className="panel-id">PROJECT / 0{index + 1}</span></div>
           <div className="flagship-copy"><h3 data-decode>{index === 0 ? "IBIS 2.0 — Bird species identification" : "Daily fatigue prediction"}</h3><p>{index === 0 ? "A researcher-facing computer vision pipeline for identifying Indian bird species across a large, imbalanced image dataset." : "An ordinal modeling pipeline for estimating daily fatigue from wearable, physiological, and survey signals."}</p></div>

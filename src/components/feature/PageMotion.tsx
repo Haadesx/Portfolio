@@ -171,7 +171,7 @@ export function PageMotion() {
       element.style.opacity = "0";
       observer.observe(element);
     });
-    root.querySelectorAll<HTMLElement>(".proof-strip, .reference-heading, .about-columns > div, .flagship-panel, .matrix-card, .experience-panel, .skill-card, .publication-list > div, .reference-contact").forEach((element) => observer.observe(element));
+    root.querySelectorAll<HTMLElement>(".reference-heading, .about-columns > div, .flagship-panel, .matrix-card, .experience-panel, .skill-card, .publication-list > div, .reference-contact").forEach((element) => observer.observe(element));
     const onFocus = (event: FocusEvent) => {
       const focused = event.target as Element;
       pending.forEach((_, element) => { if (element === focused || element.contains(focused)) restore(element); });
