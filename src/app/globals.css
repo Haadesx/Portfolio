@@ -585,3 +585,13 @@ article .prose table{display:block;max-width:100%;overflow-x:auto;border-collaps
   .swim-district-top{flex-direction:column;align-items:flex-start;gap:8px}
   .swim-story-section h3{font-size:1.2rem}
 }
+
+/* Hold the hero until PageMotion has set up the initial decode. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .hero[data-hero-decode] .hero-topline,
+  .hero[data-hero-decode] .outline-word,
+  .hero[data-hero-decode] .hero-intro,
+  .hero[data-hero-decode] .hero-side,
+  .hero[data-hero-decode] .identity-tile,
+  .hero[data-hero-decode] .nameplate { opacity: 0; }
+}

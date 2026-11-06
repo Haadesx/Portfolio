@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div className="editorial">
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" aria-labelledby="hero-title" data-hero-decode>
         <HeroIntro />
         <div className="blueprint" aria-hidden="true"><i /><i /><i /><i /><span /><span /><span /></div>
         <div className="hero-topline"><span>Varesh Patel / Portfolio 2026</span><span>Machine learning &amp; computer vision</span></div>
