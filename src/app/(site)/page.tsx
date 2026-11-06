@@ -10,6 +10,7 @@ import {
 } from "@/data/curation";
 import { ExperienceTimeline } from "@/components/feature/ExperienceTimeline";
 import { FlagshipPanel } from "@/components/feature/FlagshipPanel";
+import { SwimmingSection } from "@/components/feature/SwimmingSection";
 import { HeroIntro } from "@/components/feature/HeroIntro";
 
 const skills = [
@@ -183,6 +184,8 @@ export default function Home() {
             <a className="publication-paper-link" href="https://doi.org/10.1109/FMLDS63805.2024.00092" target="_blank" rel="noopener noreferrer" aria-label="Read the emotion-aware music recommendations paper at IEEE">READ PAPER ↗</a>
           </div>
         </div></section>
+
+      <SwimmingSection />
 
       <section className="contact-cta reference-contact" data-reveal><p className="eyebrow">LET’S WORK TOGETHER</p><h2>Let’s build something<br /><span>worth understanding.</span></h2><p>Have a challenging problem in machine learning or computer vision? I’d love to hear about it.</p><div><Link className="button-primary" href="/contact">Start a conversation <span>↗</span></Link><a className="text-link" href="/resume.pdf">View résumé ↗</a></div><a className="contact-social" href="https://github.com/Haadesx">GITHUB ↗</a><a className="contact-social" href="https://www.linkedin.com/in/vareshpatel/">LINKEDIN ↗</a></section>
     </div>

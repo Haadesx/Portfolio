@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { SwimmingStory } from "@/components/feature/SwimmingStory";
 
 export const metadata = {
     title: "About | Varesh Patel",
-    description: "Varesh Patel’s background in machine learning, computer vision, and applied AI.",
+    description: "Varesh Patel’s background in machine learning, computer vision, applied AI, and competitive swimming.",
 };
 
 export default function AboutPage() {
@@ -20,6 +21,7 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-bold text-primary mt-12">Beyond the model</h2>
                 <p>As IEEE GCET Student Branch secretary, I organized technical and networking events and coordinated branch operations. I have also created Adobe Express content and run workshops for the Rutgers community as a student ambassador.</p>
                 <p>I published <a href="https://pypi.org/project/lootqdm/" className="text-secondary hover:underline">lootqdm</a>, a Python training-loop toolkit with PyTorch and Keras integrations.</p>
+                <SwimmingStory />
                 <div className="flex flex-wrap gap-6 pt-6"><Link href="/projects" className="text-secondary font-mono hover:underline">Explore projects →</Link><a href="/resume.pdf" className="text-secondary font-mono hover:underline">View résumé →</a></div>
             </div>
         </div>
