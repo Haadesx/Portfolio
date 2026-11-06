@@ -28,12 +28,13 @@ npm run dev    # development server
 npm run build  # production build
 npm run start  # serve the production build
 npm run lint   # ESLint
+npm run validate:content  # project, MDX, archive, and claim consistency
 ```
 
 ## Routes
 
 - `/` — cinematic home: blueprint intro, scroll-driven bounding boxes, project evidence
-- `/projects` — case-study archive plus GitHub repository index
+- `/projects` — curated case-study archive grouped by evidence type, plus the wider GitHub surface
 - `/projects/[slug]` — MDX case studies under `src/content/projects`
 - `/about`, `/contact` — background and contact details
 - `/chat` — tool-calling assistant grounded in portfolio data
