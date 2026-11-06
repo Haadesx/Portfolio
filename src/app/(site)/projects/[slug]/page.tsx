@@ -45,6 +45,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     {projectMeta.shortDescription}
                 </p>
 
+                {projectMeta.evidenceNote && (
+                    <aside
+                        aria-label="Evidence note"
+                        className="mb-8 rounded-lg border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-foreground/75"
+                    >
+                        <span className="mb-1 block font-mono text-xs uppercase tracking-wide text-foreground/60">
+                            Evidence note
+                        </span>
+                        <p>{projectMeta.evidenceNote}</p>
+                    </aside>
+                )}
+
                 <div className="flex flex-wrap gap-4 items-center justify-between border-b border-white/10 pb-6">
                     <div className="flex flex-wrap gap-2">
                         {projectMeta.techStack.map(stack => (
