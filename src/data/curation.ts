@@ -6,6 +6,7 @@ export type FlagshipFact = {
 export type FlagshipCuration = {
   slug: string;
   label: string;
+  capability: string;
   thesis: string;
   problem: string;
   contribution: string;
@@ -20,6 +21,7 @@ export const featuredFlagships: FlagshipCuration[] = [
   {
     slug: "diffullm",
     label: "Deep Learning / Generative Models / Research",
+    capability: "Model training from scratch, distributed GPU infrastructure, and failure-aware evaluation.",
     thesis:
       "A from-scratch discrete diffusion language model, trained and evaluated as an alternative to left-to-right text generation.",
     problem:
@@ -42,6 +44,7 @@ export const featuredFlagships: FlagshipCuration[] = [
   {
     slug: "carewatch",
     label: "Computer Vision / Applied AI / Hackathon",
+    capability: "Real-time computer vision, multimodal verification, and human-in-the-loop product design.",
     thesis:
       "A human-in-the-loop safety prototype that turns pose and scene signals into short evidence clips for review.",
     problem:
@@ -64,6 +67,7 @@ export const featuredFlagships: FlagshipCuration[] = [
   {
     slug: "iconoclast",
     label: "LLM Research / Representation Learning / Evaluation",
+    capability: "Controlled representation experiments, optimization, and utility-aware model evaluation.",
     thesis:
       "A representation-editing framework that measures the utility cost of changing model behavior, rather than treating refusal removal as a single number.",
     problem:
@@ -235,11 +239,4 @@ export const archiveGroups: ArchiveGroup[] = [
   },
 ];
 
-export const furtherWorkSlugs = [
-  "event-pose-estimation",
-  "crucible",
-  "edge-ai",
-  "webgpu-edge-ai",
-  "lootqdm",
-  "m-agent",
-];
+export const furtherWorkSlugs = ["crucible", "m-agent", "healthtwin"];

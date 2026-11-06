@@ -114,7 +114,7 @@ export default function Home() {
           </div>
         </article>
 
-        <div className="reference-heading matrix-heading" data-reveal><p className="eyebrow">FURTHER EVIDENCE / RECENT BUILDS</p><h2 data-decode>More engineering<span>.</span></h2><p>Evaluation harnesses, embedded inference, inference benchmarking, and released tooling.</p></div>
+        <div className="reference-heading matrix-heading" data-reveal><p className="eyebrow">FURTHER EVIDENCE / RECENT BUILDS</p><h2 data-decode>More engineering<span>.</span></h2><p>Evaluation harnesses, agent tooling, and applied healthcare systems.</p></div>
         <div className="matrix-grid">
           {furtherWork.map((project, index) => (
             <article className="matrix-card" key={project.slug} data-reveal>

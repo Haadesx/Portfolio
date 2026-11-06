@@ -12,10 +12,9 @@ type FlagshipPanelProps = {
 export function FlagshipPanel({ project, curation, index }: FlagshipPanelProps) {
   const detailCells = [
     { label: "01 / PROBLEM", text: curation.problem },
-    { label: "02 / MY CONTRIBUTION", text: curation.contribution },
-    { label: "03 / METHOD", text: curation.method },
-    { label: "04 / EVIDENCE", text: curation.evaluation },
-    { label: "05 / LIMITATIONS", text: curation.limitation },
+    { label: "02 / METHOD", text: curation.method },
+    { label: "03 / EVIDENCE", text: curation.evaluation },
+    { label: "04 / LIMITATIONS", text: curation.limitation },
   ];
 
   return (
@@ -42,14 +41,32 @@ export function FlagshipPanel({ project, curation, index }: FlagshipPanelProps) 
         ))}
       </div>
 
-      <div className="flagship-detail-grid">
-        {detailCells.map((cell) => (
-          <div className="flagship-detail" key={cell.label}>
-            <span>{cell.label}</span>
-            <p>{cell.text}</p>
-          </div>
-        ))}
+      <div className="flagship-scan">
+        <div>
+          <span>MY CONTRIBUTION</span>
+          <p>{curation.contribution}</p>
+        </div>
+        <div>
+          <span>TECHNICAL CAPABILITY</span>
+          <p>{curation.capability}</p>
+        </div>
       </div>
+
+      <details className="flagship-disclosure">
+        <summary>
+          <span className="disclosure-title">ENGINEERING BREAKDOWN</span>
+          <span className="disclosure-hint">PROBLEM · METHOD · EVIDENCE · LIMITS</span>
+          <span className="disclosure-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div className="flagship-detail-grid">
+          {detailCells.map((cell) => (
+            <div className="flagship-detail" key={cell.label}>
+              <span>{cell.label}</span>
+              <p>{cell.text}</p>
+            </div>
+          ))}
+        </div>
+      </details>
 
       <div className="flagship-footer">
         <span className="flagship-role">RESEARCH / BUILD / EVALUATION</span>

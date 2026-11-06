@@ -39,6 +39,22 @@ for (const slug of uniqueProjectSlugs) {
   if (!archived.has(slug)) failures.push(`Project is missing from the curated archive groups: ${slug}`);
 }
 
+const furtherWorkMatch = curationSource.match(/export const furtherWorkSlugs = \[([^\]]+)\]/);
+const furtherWork = furtherWorkMatch
+  ? [...furtherWorkMatch[1].matchAll(/["']([^"']+)["']/g)].map((match) => match[1])
+  : [];
+const ossBlock = curationSource.split("export const openSourceHighlights")[1]?.split("export const archiveGroups")[0] ?? "";
+if (!furtherWorkMatch) failures.push("Missing furtherWorkSlugs curation array");
+if (!ossBlock) failures.push("Missing openSourceHighlights curation block");
+const ossSlugs = [...ossBlock.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]);
+const repeated = furtherWork.filter((slug) => ossSlugs.includes(slug));
+if (repeated.length) {
+  failures.push(`Homepage project listings repeat between More engineering and Released work: ${repeated.join(", ")}`);
+}
+for (const slug of [...furtherWork, ...ossSlugs]) {
+  if (!uniqueProjectSlugs.has(slug)) failures.push(`Homepage curation references unknown project slug: ${slug}`);
+}
+
 for (const path of [
   "src/app/(site)/page.tsx",
   "src/app/(site)/projects/page.tsx",
