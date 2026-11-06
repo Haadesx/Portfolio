@@ -166,7 +166,23 @@ export default function Home() {
 
       <section className="editorial-section reference-skills" id="skills"><div className="reference-heading" data-reveal><p className="eyebrow">CAPABILITIES / TOOLKIT</p><h2 data-decode>The technical stack<span>.</span></h2><p>Tools and methods selected for the problem, from training to deployment.</p></div><div className="skill-matrix">{skills.map((group) => <div className="skill-card" key={group.title} data-reveal><h3>{group.title}</h3><p>{group.items}</p></div>)}</div></section>
 
-      <section className="editorial-section reference-publications" id="publications"><div className="reference-heading" data-reveal><p className="eyebrow">RESEARCH / WRITING</p><h2 data-decode>Research &amp; publications<span>.</span></h2><p>Selected work in pose estimation, recognition, and emotion-aware systems.</p></div><div className="publication-list" data-reveal><div><span>SPRINGER / ICDAM 2025 · SHAH, PATEL, JOSHI</span><h3>OpenPose, PoseNet and MoveNet: the evolution of deep learning methods in yoga pose classification</h3></div><div><span>2024 / IJIRMF</span><h3>Machine learning-based hand gesture recognition for immersive gaming</h3></div><div><span>2024 / IEEE FMLDS</span><h3>Emotion-aware music recommendations: custom CNN vs VGG16 vs InceptionV3</h3></div></div></section>
+      <section className="editorial-section reference-publications" id="publications"><div className="reference-heading" data-reveal><p className="eyebrow">RESEARCH / WRITING</p><h2 data-decode>Research &amp; publications<span>.</span></h2><p>Selected work in pose estimation, recognition, and emotion-aware systems.</p></div><div className="publication-list" data-reveal>
+          <div>
+            <span>SPRINGER / ICDAM 2025 · SHAH, PATEL, JOSHI</span>
+            <h3>OpenPose, PoseNet and MoveNet: the evolution of deep learning methods in yoga pose classification</h3>
+            <a className="publication-paper-link" href="https://doi.org/10.1007/978-3-032-02949-2_2" target="_blank" rel="noopener noreferrer" aria-label="Read the OpenPose, PoseNet and MoveNet paper at Springer">READ PAPER ↗</a>
+          </div>
+          <div>
+            <span>2024 / IJIRMF · VARESH PATEL</span>
+            <h3>Machine learning-based hand gesture recognition for immersive gaming</h3>
+            <a className="publication-paper-link" href="https://www.ijirmf.com/wp-content/uploads/NOBCON-2024-min.pdf#page=17" target="_blank" rel="noopener noreferrer" aria-label="Read the hand gesture recognition paper in the NOBCON-2024 proceedings">READ PAPER ↗</a>
+          </div>
+          <div>
+            <span>2024 / IEEE FMLDS · VARESH PATEL, KHYATI MEHTA</span>
+            <h3>Emotion-aware music recommendations: custom CNN vs VGG16 vs InceptionV3</h3>
+            <a className="publication-paper-link" href="https://doi.org/10.1109/FMLDS63805.2024.00092" target="_blank" rel="noopener noreferrer" aria-label="Read the emotion-aware music recommendations paper at IEEE">READ PAPER ↗</a>
+          </div>
+        </div></section>
 
       <section className="contact-cta reference-contact" data-reveal><p className="eyebrow">LET’S WORK TOGETHER</p><h2>Let’s build something<br /><span>worth understanding.</span></h2><p>Have a challenging problem in machine learning or computer vision? I’d love to hear about it.</p><div><Link className="button-primary" href="/contact">Start a conversation <span>↗</span></Link><a className="text-link" href="/resume.pdf">View résumé ↗</a></div><a className="contact-social" href="https://github.com/Haadesx">GITHUB ↗</a><a className="contact-social" href="https://www.linkedin.com/in/vareshpatel/">LINKEDIN ↗</a></section>
     </div>

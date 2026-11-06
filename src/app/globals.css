@@ -469,3 +469,8 @@ article .prose table{display:block;max-width:100%;overflow-x:auto;border-collaps
   .flagship-facts strong{font-size:clamp(1.2rem,6vw,1.5rem)}
   .flagship-facts span{font-size:8px}
 }
+
+/* Official publication links */
+.reference-publications .publication-paper-link{display:inline-block;margin-top:15px;color:var(--secondary);font:700 9px var(--font-mono);letter-spacing:.07em;text-decoration:none;border-bottom:1px solid #5a3a35;padding-bottom:3px}
+.reference-publications .publication-paper-link:hover{color:#f3f0ea;border-color:#f3f0ea}
+.reference-publications .publication-paper-link:focus-visible{outline:2px solid #7de0e6;outline-offset:4px}

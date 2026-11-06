@@ -64,6 +64,20 @@ for (const path of [
   if (!existsSync(join(root, path))) failures.push(`Expected source file missing: ${path}`);
 }
 
+const homepageSource = read("src/app/(site)/page.tsx");
+const publicationLinks = [
+  "https://doi.org/10.1007/978-3-032-02949-2_2",
+  "https://www.ijirmf.com/wp-content/uploads/NOBCON-2024-min.pdf#page=17",
+  "https://doi.org/10.1109/FMLDS63805.2024.00092",
+];
+for (const url of publicationLinks) {
+  if (!homepageSource.includes(url)) failures.push(`Missing official publication link: ${url}`);
+}
+const publicationLinkCount = (homepageSource.match(/className="publication-paper-link"/g) ?? []).length;
+if (publicationLinkCount !== publicationLinks.length) {
+  failures.push(`Expected ${publicationLinks.length} publication links, found ${publicationLinkCount}`);
+}
+
 for (const [needle, reason] of [
   ["2nd Prize", "unverified ordinal award claim"],
   ["Best Use Case of Solana", "superseded award wording"],
