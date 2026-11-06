@@ -80,6 +80,9 @@ const PORTFOLIO_SIGNAL_PATTERNS: RegExp[] = [
   /\b(role|roles|job|position)\b[^?]{0,40}\b(for|fit|fits|hiring|looking)\b/,
   /\b(looking for|targeting|interested in)\b/,
   /\b(built|builds|what (have|has) (you|he) (ever )?built)\b/,
+  /\b(you|your|yours)\b/,
+  /\b(machine learning|deep learning|computer vision|\bml\b|\bcv\b|model evaluation|evaluation|metrics?|benchmarks?)\b/,
+  /\b(good fit|fit for|qualified|qualifications|candidate)\b/,
 ];
 
 function normalize(text: string): string {

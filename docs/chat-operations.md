@@ -48,7 +48,7 @@ values so the docs cannot drift silently.
 | Messages per request | 24 | `413` |
 | Total retained text | 12,000 chars | `413` |
 | Single text part | 4,000 chars | `413` |
-| Output tokens | 600 | `maxOutputTokens` on the model call |
+| Output tokens | 1,200 | `maxOutputTokens` on the model call |
 | Model/tool steps | 3 | `stopWhen: stepCountIs(3)` |
 
 Sanitization rules applied to every message:
@@ -72,7 +72,7 @@ Sanitization rules applied to every message:
 - `system`: `SYSTEM_PROMPT.content` from `src/app/api/chat/prompt.ts` (generated from the
   canonical facts layer).
 - `messages`: sanitized `UIMessage[]` converted with `convertToModelMessages`.
-- `maxOutputTokens: 600`, `temperature: 0.2`.
+- `maxOutputTokens: 1,200`. No temperature override: the current model is a reasoning model and rejects `temperature`.
 - `stopWhen: stepCountIs(3)`; at most 3 provider steps per request.
 - `prepareStep` allows tools **only on step 0**. From step 1 onward it sets
   `toolChoice: 'none'`, so the model cannot call another tool and must produce the final

@@ -375,7 +375,6 @@ export async function POST(req: Request): Promise<Response> {
         messages: convertToModelMessages(messages),
         tools,
         maxOutputTokens: CHAT_LIMITS.maxOutputTokens,
-        temperature: 0.2,
         stopWhen: stepCountIs(CHAT_LIMITS.maxSteps),
         // Tools are allowed only on step 0; every later step is forced to text.
         // This guarantees a final text answer instead of a zero-text tool turn.

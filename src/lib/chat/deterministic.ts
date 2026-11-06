@@ -142,6 +142,31 @@ const AGE_REPLY = `Varesh is **23 years old** as of November 2026.`;
 
 const CONTACT_REPLY = `Best professional contact: **${varesh.email}**, [LinkedIn](${varesh.linkedin}), or [GitHub](${varesh.github}). The served résumé is [PDF](${varesh.resume.path}), updated ${varesh.resume.updated}. Email or LinkedIn is the fastest route; the assistant doesn't share a phone number or home address.`;
 
+const PROJECTS_MENTION =
+  /\b(projects?|case stud(y|ies)|what (has|have) (you|he) built)\b/;
+
+/**
+ * Multi-intent questions (e.g. "résumé link, GitHub, project list, email") are
+ * answered by the model with the full facts context rather than a narrow
+ * deterministic template that would silently drop parts of the request.
+ */
+function hasConflictingIntents(text: string): boolean {
+  const secondary = [
+    IDENTITY_PATTERN,
+    PUBLICATION_TERMS,
+    MOST_RECENT_PATTERN,
+    AVAILABILITY_PATTERN,
+    SWIMMING_PATTERN,
+    EDUCATION_PATTERN,
+    EXPERIENCE_LIST_PATTERN,
+    PROJECT_COUNT_PATTERN,
+    AWARDS_PATTERN,
+    AGE_PATTERN,
+    PROJECTS_MENTION,
+  ].filter((pattern) => pattern.test(text)).length;
+  return CONTACT_PATTERN.test(text) && secondary > 0;
+}
+
 function isPublicationIntent(text: string): boolean {
   if (PUBLICATION_TERMS.test(text)) return true;
   if (PROJECT_NAMES.test(text) && !/\b(publications?|peer[- ]reviewed|publish(ed|ing)?)\b/.test(text)) {
@@ -164,6 +189,7 @@ export function getDeterministicReply(messages: UIMessage[]): DeterministicReply
   if (VISA_PATTERN.test(text)) return reply(VISA_REPLY, 'visa');
   if (COMMITMENT_PATTERN.test(text)) return reply(COMMITMENT_REPLY, 'commitment');
   if (isStrongOffTopicTask(text)) return reply(OFF_TOPIC_REPLY, 'off-topic');
+  if (hasConflictingIntents(text)) return null;
 
   if (IDENTITY_PATTERN.test(text)) return reply(IDENTITY_REPLY, 'identity');
   if (isPublicationIntent(text)) return reply(PUBLICATIONS_REPLY, 'publications');

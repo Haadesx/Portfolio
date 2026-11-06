@@ -300,7 +300,7 @@ describe('parseChatRequest — trust boundary (E-33)', () => {
       maxMessages: 24,
       maxTotalTextChars: 12_000,
       maxTextPartChars: 4_000,
-      maxOutputTokens: 600,
+      maxOutputTokens: 1200,
       maxSteps: 3,
     });
   });

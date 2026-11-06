@@ -306,3 +306,21 @@ test('scope: first contact without portfolio signal gets a portfolio-context red
     assert.match(decision.reply, /16 curated case studies/);
   }
 });
+
+test('scope: legitimate ML evaluation and role-fit questions are allowed (anti-over-refusal)', () => {
+  for (const text of [
+    'How do you evaluate ML models? What metrics and protocols do you use?',
+    'Why are you a good fit for a computer vision role?',
+  ]) {
+    assert.equal(assessScope([userMessage(text)]).allowed, true, text);
+  }
+});
+
+test('deterministic: multi-intent contact+project questions defer to the model', () => {
+  const reply = getDeterministicReply([
+    userMessage(
+      'Give me your résumé link, GitHub, LinkedIn, a quick project list, and your contact email.',
+    ),
+  ]);
+  assert.equal(reply, null);
+});

@@ -17,7 +17,7 @@ export const CHAT_LIMITS = {
   /** Maximum characters in a single text part. */
   maxTextPartChars: 4_000,
   /** Maximum output tokens for the model (also caps cost). */
-  maxOutputTokens: 600,
+  maxOutputTokens: 1200,
   /** Maximum model/tool steps per request. Step 0 may call tools, later steps are text-only. */
   maxSteps: 3,
 } as const;
