@@ -1,15 +1,57 @@
 ---
-title: "MedCheck"
+title: "MedCheck — Vision-Assisted Medication Label Verification"
 ---
 
-## Context
+## The problem
 
-MedCheck is an accessibility-minded HackRU 2026 medication companion prototype. It extracts label information from a photo and compares the name and strength with a tracked medication record.
+A caregiver needs to answer a narrow question: **does this bottle match the tracked medication, and is a dose actually due?** Reading a label is not the same as making a medication decision, and a model should not silently bridge that gap.
 
-## Approach
+MedCheck is an OCR-first label-verification prototype built at HackRU 2026. It turns a photo into reviewable evidence, compares it with a tracked prescription, and requires a separate human confirmation before any dose is recorded.
 
-The OCR-first workflow distinguishes matching, mismatched, uncertain, and dose-status states. Ambiguous information prompts review or rescan; dose logging requires a separate explicit confirmation. The repository describes a web experience and an iOS preview.
+## Safety invariants
 
-## Scope and limitations
+The architecture is shaped by explicit constraints:
 
-A label scan is evidence about a bottle, not proof that a medication was taken. This is a prototype, not a clinical decision system.
+- A scan is evidence about a bottle, not proof of ingestion.
+- Inference never authorizes a dose.
+- The backend owns prescriptions, schedules, inventory, and dose events.
+- Structured fields preserve confidence and source metadata.
+- Missing or ambiguous name/strength evidence produces `uncertain` or a rescan, not a guess.
+- A scan never fabricates drug data; raw source text is retained.
+
+These are product requirements, not claims that the prototype has been clinically validated.
+
+## How it works
+
+```text
+photo(s)
+  → frame-quality checks + YOLO11n bottle detection
+  → RapidOCR label extraction
+  → structured fields with confidence and source
+  → multi-frame fusion for long/curved labels
+  → optional Qwen3-VL escalation when identity is weak
+  → candidate match against tracked prescription
+  → review / mismatch / uncertain / due-now state
+  → explicit confirmation before dose history
+```
+
+The inference service reports what it can read; the Flask/TimescaleDB backend owns medication authority. A React/Vite dashboard supports scan, verify, review, confirm, history, supply, and adherence views. A separate SwiftUI preview is described in the README, but the audited repository's provenance record says no iOS app is present there; treat the iOS surface as a preview, not a shipped client.
+
+## Contribution and provenance
+
+I originated and directed the project: I set the OCR-first architecture, the safety invariants, and the integration plan, and coordinated the work across the dashboard, backend, and inference services. Teammates and agent-assisted implementation contributed parts of the codebase; the repository's `docs/PROJECT_PROVENANCE.md` records the authorship and integration history. This page does not attribute every file to me.
+
+## Evidence and limits
+
+- The repository's release manifest reports **523 inference tests and 81 backend tests** at commit `57eb80b`. Those numbers were documented by the project; they were not re-executed for this portfolio build.
+- A UI-only mock-data mode exists for design review. It is not the live verification pipeline.
+- The full stack is a local development environment, not a hosted medication service.
+- No clinical validation, medication-correctness accuracy, or patient-safety claim is made.
+- OCR and VLM output can be wrong; confidence, provenance, and human review are the mitigation, not a guarantee.
+
+## Links
+
+- [GitHub repository](https://github.com/Haadesx/HackRU26)
+- [Project status](https://github.com/Haadesx/HackRU26/blob/feat/integration/docs/PROJECT_STATUS.md)
+- [Project provenance](https://github.com/Haadesx/HackRU26/blob/feat/integration/docs/PROJECT_PROVENANCE.md)
+- [Release manifest](https://github.com/Haadesx/HackRU26/blob/feat/integration/docs/RELEASE_MANIFEST.md)

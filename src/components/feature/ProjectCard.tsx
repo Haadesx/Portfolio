@@ -45,7 +45,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                         <span className="font-mono text-secondary">Problem:</span> {project.problem}
                     </div>
                     <div className="mt-1 text-xs opacity-80">
-                        <span className="font-mono text-secondary">Result:</span> {project.resultsMetrics[0]}
+                        <span className="font-mono text-secondary">Evidence:</span> {project.resultsMetrics[0]}
                     </div>
                 </div>
             </div>

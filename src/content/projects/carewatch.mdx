@@ -1,15 +1,57 @@
 ---
-title: "CareWatch (EyeQ)"
+title: "CareWatch — A Computer Vision Safety Monitoring Prototype"
 ---
 
-## Context
+## The problem
 
-CareWatch is a Bitcamp 2026 hackathon MVP exploring video-assisted detection of concerning caregiver interactions. The résumé lists it as second prize for Best Social Good Hack.
+Caregivers cannot continuously watch hours of footage. CareWatch explores whether computer vision can surface a small set of potentially concerning interactions for **human review**, with enough context to decide what happened.
 
-## Approach
+This is a safety-review prototype, not a validated abuse detector. The design center is evidence and escalation, not an automated judgment.
 
-A Python pipeline combines YOLOv8 pose-based heuristics, vision-model review, a rolling 30-second clip buffer, event logging, and push alerts. A React dashboard supports live monitoring and recording review, with an iOS guardian client.
+## Why pose-based heuristics
 
-## Scope and limitations
+A full action-recognition model would require labeled examples that a weekend build does not have. Pose estimation offers a more inspectable first pass:
 
-The system is an MVP intended to surface evidence for human review, not proof of abuse or a validated safety system.
+- Track people and body keypoints with YOLOv8-pose.
+- Flag proximity and fast-motion interactions, or long caretaker absence.
+- Send only flagged frames to a vision model for scene verification.
+- Capture a short evidence clip around the event.
+
+The tradeoff is deliberate: heuristics are explainable and cheap, but they will produce false positives and can miss subtle events.
+
+## System flow
+
+```text
+camera frames
+  → YOLOv8 pose + person tracking
+  → proximity / motion heuristics
+  → scene verification (hosted or local vision model)
+  → 30-second rolling evidence buffer
+  → push alert + SQLite event log
+  → React dashboard / iOS guardian client
+```
+
+The repository separates responsibilities across `core/detector.py`, `core/classifier.py`, `core/clip_saver.py`, `core/alert.py`, and `core/pipeline.py`. Alerts have severity-based deduplication. The dashboard supports live monitoring and review of saved recordings; the iOS client is the guardian-facing surface.
+
+## Evaluation and recognition
+
+CareWatch received **Best Social Good Hack at Bitcamp 2026**, verified on [Devpost](https://devpost.com/software/eyeq-0c8wdl).
+
+That award is external recognition of the prototype and its framing. It is not a precision/recall result. The repository does not publish sensitivity, false-positive rates, or a clinical validation study. The demo uses staged high-risk interactions and caretaker-absence scenarios.
+
+## Team and contribution
+
+CareWatch was a team hackathon build. I worked across the pose-heuristic pipeline, evidence capture, and review workflow; teammates contributed to the surrounding application and iOS client. The repository is the source of truth for the combined implementation and does not contain a complete file-by-file authorship ledger, so this page does not attribute every module to me.
+
+## Limits
+
+- No claim of real-world abuse-detection reliability.
+- No clinical, legal, or safeguarding validation.
+- False positives are expected; camera angle, occlusion, lighting, and unusual motion all matter.
+- A 30-second clip is evidence for a human, not a complete account of an event.
+- The project should not be deployed as a decision-making system without consent, review, and a much stronger evaluation program.
+
+## Links
+
+- [GitHub repository](https://github.com/Haadesx/EyeQ)
+- [Bitcamp 2026 Devpost](https://devpost.com/software/eyeq-0c8wdl)

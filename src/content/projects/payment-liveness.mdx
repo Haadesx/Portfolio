@@ -1,15 +1,35 @@
 ---
-title: "Payment Liveness Platform"
+title: "Can't HackHer: Payment Liveness"
 ---
 
-## Context
+## The build
 
-This HackHERS 2026 MVP explores verification workflows for bank and Solana payments. The résumé reports a Best Use Case of Solana API award.
+Can't HackHer is a HackHERS 2026 prototype exploring a webcam-based liveness step inside a payment workflow. The demo combines a capture challenge, video analysis, a bank/Solana payment flow, and audit records.
 
-## Approach
+It received **MLH Best Use of Solana at HackHERS 2026**, verified on [Devpost](https://devpost.com/software/can-t-hackher).
 
-The React and TypeScript frontend captures a webcam challenge, shows verification scores and decision states, and provides retry and audit views. The broader stack includes Python services and an iOS client.
+## What is implemented
 
-## Scope and limitations
+- Webcam challenge and capture flow.
+- Liveness-related video analysis and scoring surface.
+- Payment workflow scaffolding with a Solana integration.
+- Retry and audit-record paths.
+- A React/TypeScript client with a Python backend.
 
-This was a hackathon prototype; the repository does not establish real-world fraud detection performance.
+## What the award does and does not prove
+
+The award is external recognition of the hackathon build and its use of Solana. It is **not** evidence of payment security, fraud-prevention accuracy, or production readiness.
+
+The repository contains simulator/stub behavior for parts of the external flow. Liveness and deepfake accuracy have not been independently validated, and no production latency claim should be inferred from the demo. The repository also contains committed `node_modules` files, which is a repository-hygiene issue rather than a product capability.
+
+## Limits
+
+- No validated false-accept / false-reject rates.
+- No production payment, custody, or fraud guarantees.
+- Stubbed external integrations.
+- Hackathon-scope UI and operational tooling.
+
+## Links
+
+- [GitHub repository](https://github.com/Haadesx/HackHers26)
+- [Devpost award](https://devpost.com/software/can-t-hackher)

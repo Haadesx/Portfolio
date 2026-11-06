@@ -1,27 +1,40 @@
 import { ProjectList } from "@/components/feature/ProjectList";
 import { projects } from "@/data/projects";
+import { archiveGroups } from "@/data/curation";
 import { getGithubRepos } from "@/lib/github";
 
 export const metadata = {
-    title: "Projects | Varesh Patel",
-    description: "Showcase of AI/ML projects, experiments, and open source contributions.",
+  title: "Projects | Varesh Patel",
+  description:
+    "Selected machine learning, computer vision, applied AI, open-source, and earlier work by Varesh Patel.",
 };
 
 export default async function ProjectsPage() {
-    const githubRepos = await getGithubRepos();
+  const githubRepos = await getGithubRepos();
 
-    return (
-        <div className="container mx-auto px-4 sm:px-8 py-12">
-            <div className="max-w-4xl mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">Archive</h1>
-                <p className="text-lg text-foreground/80">
-                    A collection of things I&apos;ve built. From production ML systems to weekend experiments.
-                </p>
-            </div>
+  return (
+    <div className="container mx-auto px-4 sm:px-8 py-12">
+      <header className="archive-hero">
+        <p className="eyebrow">PROJECTS / CURATED ARCHIVE</p>
+        <h1>Project archive<span>.</span></h1>
+        <p>
+          Selected work comes first: trained models, evaluated representation edits, computer
+          vision, and applied AI. The full archive keeps the earlier work and the wider GitHub
+          surface accessible without flattening everything into one grid.
+        </p>
+      </header>
 
-            <ProjectList initialProjects={projects} githubRepos={githubRepos} />
+      <nav className="archive-nav" aria-label="Archive sections">
+        {archiveGroups.map((group) => (
+          <a key={group.id} href={`#${group.id}`}>
+            {group.title}
+          </a>
+        ))}
+      </nav>
 
-            <div className="pb-20"></div>
-        </div>
-    );
+      <ProjectList initialProjects={projects} githubRepos={githubRepos} />
+
+      <div className="pb-20"></div>
+    </div>
+  );
 }

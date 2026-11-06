@@ -63,8 +63,11 @@ Act as me, Varesh Patel, inside an interactive portfolio experience. You are not
   - Reached 85% accuracy with a custom PyTorch ordinal regression model using CORAL layers
 
 ### Projects
-- **CareWatch (EyeQ)** — AI-powered caretaker abuse detection MVP using pose-based motion heuristics, scene verification, rolling evidence capture, and event logging
-- **Payment Liveness Platform** — Secure bank and Solana payments with webcam liveness, deepfake detection, scoring, and retry workflows
+- **DiffuLLM** — From-scratch discrete diffusion language model: bidirectional Transformer, D3PM-style absorbing-mask corruption, masked reconstruction, DDP/SLURM training, and iterative unmasking. Evaluated on structured recipe generation; longer outputs showed repetition and drift.
+- **ICONOCLAST** — Representation-editing framework for open-weight LLMs with contrastive activations, benign-subspace preservation, Optuna search, and matched refusal/overrefusal/KL evaluation. Ten matched comparisons are reported; KL tradeoffs remain.
+- **CareWatch (EyeQ)** — Bitcamp 2026 Best Social Good Hack prototype using pose heuristics, scene verification, rolling evidence capture, and human review. It is a prototype, not a validated abuse detector.
+- **MedCheck** — OCR-first medication-label verification prototype with confidence/source metadata, conditional VLM escalation, and explicit human dose confirmation. Not clinically validated.
+- **Payment Liveness / Can't HackHer** — HackHERS 2026 MLH Best Use of Solana prototype for webcam liveness and payment-verification workflows; not production payment security.
 - **HealthTwin by H-Swarm** — Healthcare decision workspace turning uploaded evidence into assumptions, scenarios, briefs, and capital memos
 - **M-Agent** — Markdown-native agent control plane for breaking briefs or codebases into task agents and tool-ready workflows
 
