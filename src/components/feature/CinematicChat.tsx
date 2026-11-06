@@ -9,10 +9,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 const suggestedPrompts = [
-  'Who are you?',
-  'What are your strongest projects?',
-  'What are your skills?',
-  'How can I contact you?',
+  'Are you Varesh?',
+  'What are his strongest projects?',
+  'What has he published?',
+  'How can I reach him?',
 ];
 
 type ToolPart = Extract<
@@ -107,11 +107,12 @@ export function CinematicChat() {
           <h1 id="chat-title">
             Ask about
             <br />
-            <span>my work.</span>
+            <span>Varesh&apos;s work.</span>
           </h1>
           <p>
-            A tool-grounded assistant for projects, experience, skills, and contact details. If a
-            detail is not in the portfolio data, it says so instead of inventing it.
+            I&apos;m an AI assistant grounded in Varesh Patel&apos;s portfolio — not Varesh, and no
+            human is present in this chat. If a detail is not in the portfolio data, I say so
+            instead of inventing it.
           </p>
         </div>
         <div className="chat-heading-meta">
@@ -136,8 +137,9 @@ export function CinematicChat() {
             <div className="chat-message">
               <span>ASSISTANT</span>
               <p>
-                Ask me about Varesh&apos;s projects, ML experience, résumé, publications, or the
-                kind of role he is targeting.
+                I&apos;m the AI guide for this portfolio — not Varesh. Ask me about Varesh&apos;s
+                projects, ML experience, résumé, publications, or the kind of role he is
+                targeting.
               </p>
             </div>
           ) : null}

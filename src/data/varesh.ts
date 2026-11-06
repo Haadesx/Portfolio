@@ -3,7 +3,7 @@ export const varesh = {
   shortName: 'Varesh',
   headline:
     'Machine Learning Engineer | Applied AI | Computer Vision | Agentic Systems',
-  age: '22 years old',
+  age: '23 years old',
   location: 'New Brunswick, NJ',
   email: 'workmailvaresh@gmail.com',
   phone: '+1-470-758-5500',
@@ -12,6 +12,13 @@ export const varesh = {
   portfolioRepo: 'https://github.com/Haadesx/Portfolio',
   githubUsername: 'Haadesx',
   resumePath: '/resume.pdf',
+  // Served résumé metadata. `public/resume.pdf` is the canonical, current copy.
+  resume: {
+    path: '/resume.pdf',
+    label: 'Résumé (PDF)',
+    updated: 'September 2026',
+    note: 'The served PDF at /resume.pdf is the canonical résumé; the chat and site link only this version.',
+  },
   avatar: 'https://avatars.githubusercontent.com/u/128777625?v=4',
   description:
     "Hey, I'm Varesh — a machine learning engineer focused on applied AI systems that actually get shipped. I like the intersection of models, product workflow, and interfaces: computer vision pipelines, agentic systems, multimodal tooling, and full-stack delivery.",

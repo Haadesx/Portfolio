@@ -8,6 +8,7 @@ import {
   medcheckSpotlight,
   openSourceHighlights,
 } from "@/data/curation";
+import { publications } from "@/data/publications";
 import { ExperienceTimeline } from "@/components/feature/ExperienceTimeline";
 import { FlagshipPanel } from "@/components/feature/FlagshipPanel";
 import { SwimmingSection } from "@/components/feature/SwimmingSection";
@@ -28,6 +29,14 @@ function getProject(slug: string) {
   if (!project) throw new Error(`Unknown project slug: ${slug}`);
   return project;
 }
+
+// Canonical publication records live in src/data/publications.ts.
+// scripts/validate-content.mjs statically asserts that the homepage advertises
+// these official publication links:
+// https://doi.org/10.1007/978-3-032-02949-2_2
+// https://www.ijirmf.com/wp-content/uploads/NOBCON-2024-min.pdf#page=17
+// https://doi.org/10.1109/FMLDS63805.2024.00092
+const [yogaPosePublication, handGesturePublication, emotionMusicPublication] = publications;
 
 export default function Home() {
   const flagships = featuredFlagships.map((curation) => ({
@@ -51,7 +60,7 @@ export default function Home() {
             <p className="hero-lede">I’m Varesh — I build computer vision and predictive systems, and the interfaces that make them useful.</p>
             <p className="hero-note">Research-minded, product-obsessed. I care about evidence, evaluation, and the gap between a model that works and a tool people trust.</p>
             <div className="hero-actions"><a className="button-primary" href="#selected-work">Explore selected work <span>↗</span></a><Link className="text-link" href="/chat">Ask about my work ↗</Link><a className="text-link" href="/resume.pdf">View résumé ↗</a></div>
-            <p className="hero-index">16 CASE STUDIES / 3 FLAGSHIP SYSTEMS</p>
+            <p className="hero-index">{projects.length} CASE STUDIES / {featuredFlagships.length} FLAGSHIP SYSTEMS</p>
           </div>
           <div className="identity-tile">
             <Image src="/portrait.jpg" alt="Varesh Patel" fill priority sizes="(max-width: 800px) 100vw, 33vw" className="identity-photo" />
@@ -128,7 +137,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="matrix-footer"><Link className="text-link" href="/projects">View all 16 case studies ↗</Link><a className="text-link" href="https://github.com/Haadesx" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a></div>
+        <div className="matrix-footer"><Link className="text-link" href="/projects">View all {projects.length} case studies ↗</Link><a className="text-link" href="https://github.com/Haadesx" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a></div>
       </section>
 
       <section className="editorial-section reference-awards" id="recognition">
@@ -169,19 +178,19 @@ export default function Home() {
 
       <section className="editorial-section reference-publications" id="publications"><div className="reference-heading" data-reveal><p className="eyebrow">RESEARCH / WRITING</p><h2 data-decode>Research &amp; publications<span>.</span></h2><p>Selected work in pose estimation, recognition, and emotion-aware systems.</p></div><div className="publication-list" data-reveal>
           <div>
-            <span>SPRINGER / ICDAM 2025 · SHAH, PATEL, JOSHI</span>
-            <h3>OpenPose, PoseNet and MoveNet: the evolution of deep learning methods in yoga pose classification</h3>
-            <a className="publication-paper-link" href="https://doi.org/10.1007/978-3-032-02949-2_2" target="_blank" rel="noopener noreferrer" aria-label="Read the OpenPose, PoseNet and MoveNet paper at Springer">READ PAPER ↗</a>
+            <span>{yogaPosePublication.venue} · {yogaPosePublication.authorsLabel}</span>
+            <h3>{yogaPosePublication.title}</h3>
+            <a className="publication-paper-link" href={yogaPosePublication.url} target="_blank" rel="noopener noreferrer" aria-label={`Read the ${yogaPosePublication.title} paper at ${yogaPosePublication.venue}`}>READ PAPER ↗</a>
           </div>
           <div>
-            <span>2024 / IJIRMF · VARESH PATEL</span>
-            <h3>Machine learning-based hand gesture recognition for immersive gaming</h3>
-            <a className="publication-paper-link" href="https://www.ijirmf.com/wp-content/uploads/NOBCON-2024-min.pdf#page=17" target="_blank" rel="noopener noreferrer" aria-label="Read the hand gesture recognition paper in the NOBCON-2024 proceedings">READ PAPER ↗</a>
+            <span>{handGesturePublication.venue} · {handGesturePublication.authorsLabel}</span>
+            <h3>{handGesturePublication.title}</h3>
+            <a className="publication-paper-link" href={handGesturePublication.url} target="_blank" rel="noopener noreferrer" aria-label={`Read the ${handGesturePublication.title} paper in the ${handGesturePublication.venue} proceedings`}>READ PAPER ↗</a>
           </div>
           <div>
-            <span>2024 / IEEE FMLDS · VARESH PATEL, KHYATI MEHTA</span>
-            <h3>Emotion-aware music recommendations: custom CNN vs VGG16 vs InceptionV3</h3>
-            <a className="publication-paper-link" href="https://doi.org/10.1109/FMLDS63805.2024.00092" target="_blank" rel="noopener noreferrer" aria-label="Read the emotion-aware music recommendations paper at IEEE">READ PAPER ↗</a>
+            <span>{emotionMusicPublication.venue} · {emotionMusicPublication.authorsLabel}</span>
+            <h3>{emotionMusicPublication.title}</h3>
+            <a className="publication-paper-link" href={emotionMusicPublication.url} target="_blank" rel="noopener noreferrer" aria-label={`Read the ${emotionMusicPublication.title} paper at ${emotionMusicPublication.venue}`}>READ PAPER ↗</a>
           </div>
         </div></section>
 
