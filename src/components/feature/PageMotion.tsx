@@ -11,12 +11,25 @@ export function PageMotion() {
 
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motion.matches || !("IntersectionObserver" in window) || typeof Element.prototype.animate !== "function") return;
+    const pendingHero = document.querySelector<HTMLElement>(".hero[data-hero-decode]");
+    if (motion.matches || !("IntersectionObserver" in window) || typeof Element.prototype.animate !== "function") {
+      pendingHero?.removeAttribute("data-hero-decode");
+      return;
+    }
 
     const root = document.querySelector<HTMLElement>("main");
-    if (!root) return;
+    if (!root) {
+      pendingHero?.removeAttribute("data-hero-decode");
+      return;
+    }
+
+    const hero = root.querySelector<HTMLElement>(".hero");
+    const includeHero = pathname === "/" && Boolean(hero?.hasAttribute("data-hero-decode")) && !window.portfolioIntroPlayed;
+    const heroSelector = includeHero
+      ? ", .hero :is(h1,h2,h3,h4,p,blockquote,li,summary,a,button,strong,span,[data-decode])"
+      : "";
     const candidates = Array.from(root.querySelectorAll<HTMLElement>(
-      ".editorial > section:not(.hero) :is(h2,h3,h4,p,blockquote,li,summary,a,button,strong,span,[data-decode]), main > .container :is(h1,h2,h3,h4,p,li,a,button), main > article :is(h1,h2,h3,h4,p,li,a,button)"
+      ".editorial > section:not(.hero) :is(h2,h3,h4,p,blockquote,li,summary,a,button,strong,span,[data-decode]), main > .container :is(h1,h2,h3,h4,p,li,a,button), main > article :is(h1,h2,h3,h4,p,li,a,button)" + heroSelector
     ));
     const targets = candidates.filter((element) => {
       if (element.closest(".sr-only, [aria-hidden='true'], svg, .experience-timeline, .experience-note, .flagship-disclosure") || !element.textContent?.trim()) return false;
@@ -174,6 +187,28 @@ export function PageMotion() {
       element.style.opacity = "0";
       observer.observe(element);
     });
+
+    if (includeHero && hero) {
+      const revealHeroPanel = (element: HTMLElement | null, delay: number) => {
+        if (!element) return;
+        const previousOpacity = element.style.opacity;
+        element.style.opacity = "0";
+        const animation = element.animate(
+          [
+            { opacity: 0, clipPath: "inset(0 0 100% 0)" },
+            { opacity: 1, clipPath: "inset(0 0 0 0)" },
+          ],
+          { duration: 1600, delay, easing: "ease-out", fill: "both" },
+        );
+        animation.finished.then(() => { element.style.opacity = previousOpacity; }).catch(() => { element.style.opacity = previousOpacity; });
+      };
+      revealHeroPanel(hero.querySelector<HTMLElement>(".identity-tile"), 180);
+      revealHeroPanel(hero.querySelector<HTMLElement>(".outline-word"), 80);
+      requestAnimationFrame(() => hero.removeAttribute("data-hero-decode"));
+    } else {
+      hero?.removeAttribute("data-hero-decode");
+    }
+
     root.querySelectorAll<HTMLElement>(".reference-heading, .about-columns > div, .flagship-panel, .recent-project, .award-card, .oss-card, .matrix-card, .experience-panel, .skill-card, .publication-list > div, .reference-swimming, .reference-contact").forEach((element) => observer.observe(element));
     const onFocus = (event: FocusEvent) => {
       const focused = event.target as Element;

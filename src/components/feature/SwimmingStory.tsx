@@ -1,7 +1,8 @@
 import {
-  swimmingAboutParagraphs,
+  swimmingDistrictAchievement,
   swimmingEvidence,
   swimmingMilestones,
+  swimmingStorySections,
 } from "@/data/swimming";
 
 export function SwimmingStory() {
@@ -14,16 +15,56 @@ export function SwimmingStory() {
         </h2>
       </header>
 
-      <div className="about-swimming-copy">
-        {swimmingAboutParagraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+      <div className="about-swimming-story">
+        {swimmingStorySections.map((section) => (
+          <div className="swim-story-block" key={section.id}>
+            <section
+              className="swim-story-section"
+              aria-labelledby={`swim-story-${section.id}`}
+            >
+              <h3 id={`swim-story-${section.id}`}>{section.title}</h3>
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </section>
+
+            {section.id === "district-championships" ? (
+              <aside
+                className="swim-district-card"
+                aria-labelledby="district-achievement-title"
+              >
+                <div className="swim-district-top">
+                  <span>DISTRICT / MULTIPLE SEASONS</span>
+                  <span>{swimmingDistrictAchievement.evidenceStatus}</span>
+                </div>
+                <h4 id="district-achievement-title">
+                  {swimmingDistrictAchievement.title}
+                </h4>
+                <p>{swimmingDistrictAchievement.description}</p>
+                <div className="swim-district-metric">
+                  <strong>
+                    ≥{swimmingDistrictAchievement.eventCountPerQualifyingYear.minimumEvents}
+                  </strong>
+                  <span>EVENTS IN QUALIFYING YEARS</span>
+                </div>
+                <p className="swim-district-note">
+                  {swimmingDistrictAchievement.eventCountPerQualifyingYear.basis} Exact
+                  years, event names, placements, and lifetime totals are not yet documented.
+                </p>
+              </aside>
+            ) : null}
+          </div>
         ))}
       </div>
 
       <div className="swim-milestones-heading">
         <p className="eyebrow">A PERSONAL TIMELINE / 2006—2024</p>
         <h3>Milestones<span>.</span></h3>
-        <p>Ordered chronologically. The record keeps the distinction between independently documented events and athlete-supplied details.</p>
+        <p>
+          Selected milestones from a longer competitive history, ordered chronologically. This
+          is not a complete event log, and it keeps independently documented events distinct
+          from athlete-reported details.
+        </p>
       </div>
 
       <ol className="swim-timeline" aria-label="Competitive swimming milestones">
@@ -40,6 +81,12 @@ export function SwimmingStory() {
               </div>
               <h4>{milestone.title}</h4>
               <p>{milestone.detail}</p>
+              {milestone.recurrence ? (
+                <p className="swim-recurrence">
+                  ≥{milestone.recurrence.minimumEvents} events in qualifying years ·{" "}
+                  {milestone.recurrence.basis}
+                </p>
+              ) : null}
               {milestone.venue ? <p className="swim-venue">{milestone.venue}</p> : null}
             </div>
           </li>
@@ -52,8 +99,9 @@ export function SwimmingStory() {
           <h3>Where to look closer<span>.</span></h3>
           <p>
             The university record is independent. The 2015 report documents the event and its
-            dates; it does not name Varesh. Khel Mahakumbh is referenced as program context only;
-            no individual medal certificate is linked yet.
+            dates; it does not name Varesh. District wins and the 2015 medal are athlete-supplied;
+            no individual result sheet is linked yet. Khel Mahakumbh is referenced as program
+            context only.
           </p>
         </div>
         <div className="swim-evidence-list">
@@ -74,7 +122,8 @@ export function SwimmingStory() {
       </div>
 
       <p className="swim-source-note">
-        The 2015 state medal and individual competition participation are athlete-supplied.
+        District-level wins and the 2015 state medal are athlete-reported. The ≥3 event figure
+        applies to qualifying years described in the athlete’s account, not a lifetime total.
         Medal color, race time, placement, and age category are not asserted. Additional
         certificates and result sheets can be added here as they become available.
       </p>
