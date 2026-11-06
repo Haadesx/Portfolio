@@ -51,8 +51,9 @@ export function SwimmingStory() {
           <p className="eyebrow">RECORDS / EVIDENCE</p>
           <h3>Where to look closer<span>.</span></h3>
           <p>
-            The university record is independent. The 2015 reports document the event and its
-            dates; they do not name Varesh. The Khel Mahakumbh link is program context only.
+            The university record is independent. The 2015 report documents the event and its
+            dates; it does not name Varesh. Khel Mahakumbh is referenced as program context only;
+            no individual medal certificate is linked yet.
           </p>
         </div>
         <div className="swim-evidence-list">

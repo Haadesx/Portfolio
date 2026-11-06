@@ -32,20 +32,6 @@ export const swimmingEvidence: SwimmingEvidence[] = [
     status: "EVENT REPORT",
     note: "Independent reporting confirms the event, host, and October 3–6, 2015 dates. It does not name Varesh.",
   },
-  {
-    id: "west-zone-scootalks",
-    label: "SECOND 2015 REPORT ↗",
-    href: "https://www.scootalks.com/ajmer/news-detail/7-states-hellip-1000-swimmers-all-set-for-cbse-west-zone-swimming-competition-2015-108",
-    status: "EVENT REPORT",
-    note: "A second published report on the same championship. It is event context, not proof of individual participation.",
-  },
-  {
-    id: "khel-mahakumbh",
-    label: "KHEL MAHAKUMBH PROGRAM ↗",
-    href: "https://khelmahakumbh.gujarat.gov.in/",
-    status: "PROGRAM CONTEXT",
-    note: "Background on Gujarat's competition program only. It is not proof of the 2015 medal or specific qualifying years.",
-  },
 ];
 
 export const swimmingFacts = [
