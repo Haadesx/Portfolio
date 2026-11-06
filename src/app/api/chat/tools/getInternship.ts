@@ -1,26 +1,28 @@
 import { tool } from 'ai';
 import { z } from 'zod';
+import { getMostRecentExperience, portfolioFacts } from '@/lib/portfolio-facts';
 
 export const getInternship = tool({
   description:
-    "Gives a summary of what kind of internship I'm looking for, plus my contact info and how to reach me. Use this tool when the user asks about my internship search or how to contact me for opportunities.",
+    "Returns what Varesh is looking for (ML internships, applied AI product teams, research collaboration), his most recent experience, and direct contact details. Use for hiring, internship, availability, or 'what is he looking for' questions. Never confirms availability or any commitment — only Varesh can.",
   inputSchema: z.object({}),
   execute: async () => {
-    return `Here’s what I’m looking for 👇
+    const { availability, contact } = portfolioFacts;
+    const mostRecent = getMostRecentExperience();
 
-- 📅 **Availability**: Open to internship and applied AI opportunities
-- 🌍 **Location**: Based in **New Brunswick, NJ**, open to remote or hybrid
-- 🧑‍💻 **Focus**: Machine learning engineering, computer vision, agentic systems, product-facing AI
-- 🛠️ **Stack**: Python, PyTorch, FastAPI, React, TypeScript, OpenCV, SQLite, Swift
-- ✅ **What I bring**: Proven modeling work, plus the ability to ship end-to-end systems that include interfaces, workflows, and delivery constraints
-- 🔥 I like hard problems, fast iteration, and product-minded execution
-
-📬 **Contact me** via:
-- Email: workmailvaresh@gmail.com
-- LinkedIn: [linkedin.com/in/vareshpatel](https://www.linkedin.com/in/vareshpatel/?skipRedirect=true)
-- GitHub: [github.com/Haadesx](https://github.com/Haadesx)
-
-Let’s build something serious together.
-    `;
+    return [
+      'What Varesh is looking for, as documented on the portfolio:',
+      '',
+      ...availability.map((item) => `- ${item}`),
+      '',
+      `**Most recent experience:** ${mostRecent.company} — ${mostRecent.role} (${mostRecent.period}).`,
+      `- ${mostRecent.highlights[0]}`,
+      '',
+      'I can describe these interests, but I cannot confirm availability, start dates, relocation, compensation, or any commitment on his behalf — only Varesh can. Please reach him directly:',
+      '',
+      `- **Email:** ${contact.email}`,
+      `- **LinkedIn:** ${contact.linkedin}`,
+      `- **Résumé:** [PDF](${contact.resumePath}) — updated ${contact.resumeUpdated}`,
+    ].join('\n');
   },
 });

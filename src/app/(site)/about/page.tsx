@@ -1,10 +1,17 @@
 import Link from "next/link";
+import { education } from "@/data/education";
+import { experience } from "@/data/experience";
+import { publications } from "@/data/publications";
 import { SwimmingStory } from "@/components/feature/SwimmingStory";
 
 export const metadata = {
     title: "About | Varesh Patel",
     description: "Varesh Patel’s background in machine learning, computer vision, applied AI, and competitive swimming.",
 };
+
+function formatDegree(entry: (typeof education)[number]) {
+    return `${entry.degree} in ${entry.field}`;
+}
 
 export default function AboutPage() {
     return (
@@ -16,8 +23,28 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-bold text-primary mt-12">Selected work</h2>
                 <p>I trained <Link href="/projects/diffullm" className="text-secondary hover:underline">DiffuLLM</Link>, a discrete diffusion language model; built <Link href="/projects/iconoclast" className="text-secondary hover:underline">ICONOCLAST</Link>, an evaluated representation-editing framework; and worked on <Link href="/projects/carewatch" className="text-secondary hover:underline">CareWatch</Link>, a computer-vision safety-review prototype. <Link href="/projects/medcheck" className="text-secondary hover:underline">MedCheck</Link> is a more recent OCR-first applied-vision build.</p>
                 <h2 className="text-2xl font-bold text-primary mt-12">Education</h2>
-                <p><strong>Rutgers University</strong> — M.S. in Computer Science, September 2025–May 2027 (expected); GPA: 3.98/4.00.</p>
-                <p><strong>G.H. Patel College of Engineering and Technology</strong> — B.Tech in Computer Science and Design, September 2021–April 2025; CGPA: 8.3/10.</p>
+                {education.map((entry) => (
+                    <p key={entry.id}>
+                        <strong>{entry.school}</strong> — {formatDegree(entry)}, {entry.period}
+                        {entry.gpa ? `; ${entry.gpa.label}: ${entry.gpa.value}/${entry.gpa.scale}` : ""}.
+                    </p>
+                ))}
+                <h2 className="text-2xl font-bold text-primary mt-12">Experience</h2>
+                {experience.map((entry) => (
+                    <p key={entry.id}>
+                        <strong>{entry.company}</strong> — {entry.role}, {entry.period}
+                        {entry.concurrent ? " (concurrent)" : ""}.
+                    </p>
+                ))}
+                <h2 className="text-2xl font-bold text-primary mt-12">Research &amp; publications</h2>
+                {publications.map((publication) => (
+                    <p key={publication.id}>
+                        <strong>{publication.venue}</strong> — {publication.title} ({publication.authorsLabel}).{" "}
+                        <a href={publication.url} className="text-secondary hover:underline" target="_blank" rel="noopener noreferrer">
+                            Read paper ↗
+                        </a>
+                    </p>
+                ))}
                 <h2 className="text-2xl font-bold text-primary mt-12">Beyond the model</h2>
                 <p>As IEEE GCET Student Branch secretary, I organized technical and networking events and coordinated branch operations. I have also created Adobe Express content and run workshops for the Rutgers community as a student ambassador.</p>
                 <p>I published <a href="https://pypi.org/project/lootqdm/" className="text-secondary hover:underline">lootqdm</a>, a Python training-loop toolkit with PyTorch and Keras integrations.</p>
