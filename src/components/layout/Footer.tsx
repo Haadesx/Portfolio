@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
@@ -17,6 +18,13 @@ export function Footer() {
                     <span className="sr-only">Email</span>
                 </a>
             </div>
+            <nav className="footer-links" aria-label="Footer navigation">
+                <Link href="/projects">Projects</Link>
+                <Link href="/research">Research</Link>
+                <Link href="/about">About</Link>
+                <Link href="/contact">Contact</Link>
+                <a href="/resume.pdf">Résumé ↗</a>
+            </nav>
             <p className="font-mono text-xs">
                 Built by Varesh Patel.
             </p>

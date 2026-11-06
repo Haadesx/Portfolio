@@ -36,6 +36,7 @@ npm run validate:content  # project, MDX, archive, and claim consistency
 - `/` — cinematic home: blueprint intro, scroll-driven bounding boxes, project evidence
 - `/projects` — curated case-study archive grouped by evidence type, plus the wider GitHub surface
 - `/projects/[slug]` — MDX case studies under `src/content/projects`
+- `/research` — publications and externally verified awards with official links
 - `/about`, `/contact` — background and contact details
 - `/chat` — tool-calling assistant grounded in portfolio data
 - `/admin` — optional project config editor (unlisted)
