@@ -1,17 +1,69 @@
 ---
-title: "DiffuLLM: Discrete Diffusion for Text"
+title: "DiffuLLM — Training a Diffusion Language Model From Scratch"
 ---
 
-## Context
+## The question
 
-DiffuLLM is Varesh Patel’s system in a collaborative comparative study of three discrete diffusion language models trained on recipe corpora.
+Autoregressive language models generate one token at a time, left to right. DiffuLLM asks a different question: can a language model learn text by **denoising in parallel**, starting from a fully masked sequence and iteratively filling in the blanks?
 
-## Approach
+This was a from-scratch research build, not an API wrapper. The system was trained on recipe text because recipes have a strong, inspectable structure: a title, ingredients, and an ordered instruction sequence.
 
-A bidirectional transformer uses D3PM-style absorbing-mask corruption and masked reconstruction. Inference iteratively unmasks tokens to refine a generated sequence.
+## System design
 
-The model was trained for over 500,000 iterations using PyTorch Distributed Data Parallel and SLURM. Experiments compared sampling settings.
+DiffuLLM is a bidirectional Transformer trained with a D3PM-style discrete diffusion objective.
 
-## Scope and limitations
+| Layer | Choice |
+| --- | --- |
+| Backbone | Bidirectional Transformer encoder |
+| Corruption | Absorbing `[MASK]` state |
+| Objective | Masked-only cross-entropy over corrupted tokens |
+| Timestep sampling | `logit_normal`, to emphasize mid-noise states |
+| Inference | Iterative confidence-based unmasking |
+| Training | PyTorch Distributed Data Parallel via `torchrun`, submitted to SLURM |
+| Checkpointing | Validation-loss checkpoints; the evaluated checkpoint is `best_step503000.pt` |
 
-The work is a research comparison on recipe data; results should be interpreted within that domain and experimental setup. Long-context repetition and global coherence remain documented failure modes.
+The important design distinction is that the model does not receive a causal left-to-right history. It sees the whole partially masked sequence and learns to reconstruct missing tokens from bidirectional context.
+
+## Training and infrastructure
+
+- Trained for more than 500,000 iterations on the recipe corpus.
+- Distributed training through PyTorch DDP; cluster submission through SLURM.
+- A local smoke-test path verifies the data pipeline, tokenizer, and local inference before a cluster run.
+- Checkpointing and validation-loss monitoring were used to select the evaluated checkpoint.
+
+The repository's comparison table also lists a **1.2M-step** figure for DiffuLLM, while the evaluation section documents the selected 503k checkpoint. Those numbers have not been reconciled as the same run. This page therefore treats **503k as the evaluated checkpoint** and does not use 1.2M as a headline result.
+
+## Evaluation
+
+Evaluation focused on structured recipe completion: provide a title and ingredients, then generate the instruction sequence. The repository documents that short-to-medium generations are coherent and follow the recipe structure; generations at longer lengths are less reliable.
+
+No numeric benchmark is asserted here. The evidence is the committed training/evaluation code, the selected checkpoint, the generated examples in the README, and the final report. The report covers the broader three-way comparison, including two SEDD systems.
+
+## Failure modes
+
+Longer generations exposed real limits:
+
+- Repetition and cyclical instruction loops.
+- Malformed control-token output.
+- Topic drift as the sequence grows beyond a few hundred tokens.
+
+The README attributes these to the difficulty of maintaining a global narrative state without a strict causal hidden state. That is a useful negative result: parallel denoising can model local structure while still struggling with long-range coherence.
+
+## My contribution and collaborators
+
+I designed and built the DiffuLLM system: the architecture, absorbing-mask diffusion setup, masked reconstruction objective, training loop, DDP/SLURM workflow, checkpointing, and qualitative evaluation.
+
+The comparative report is co-authored with **Urvi Desai** and **Aparajita Sarkar**. The SEDD-SE and SEDD-KL systems in the comparison were independently implemented by Urvi; the three systems share a study and report, not a single authorship claim.
+
+## Reproducibility and links
+
+- [Source and report](https://github.com/Haadesx/Diffusion-Model)
+- [Final report PDF](https://github.com/Haadesx/Diffusion-Model/blob/main/report.pdf)
+- Dataset: `B2111797/recipenlg-text-256`
+- Setup: `scripts/setup_ilab.sh`
+- Cluster run: `scripts/submit_ilab_ddp.slurm`
+- Local smoke test: `scripts/run_local_smoke.sh`
+
+## Limits
+
+This is a recipe-domain research system with qualitative evaluation. It is not a production language model, and it is not evidence that discrete diffusion beats autoregressive models across general text. The 1.2M-step documentation discrepancy should be resolved before that figure is used publicly.

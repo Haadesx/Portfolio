@@ -1,19 +1,60 @@
 ---
-title: "ICONOCLAST: LLM Representation Editing"
+title: "ICONOCLAST — Evaluating Targeted LLM Representation Edits"
 ---
 
-## Context
+## Motivation
 
-ICONOCLAST is a Python framework for researching refusal-behavior editing in open-weight language models.
+Directional abliteration can reduce unwanted refusals in an open-weight language model, but the edit often has a utility cost: benign requests may be refused, or the model's next-token distribution may drift from the base model.
 
-## Approach
+ICONOCLAST asks whether a more careful edit can change the target behavior while doing less collateral damage — and, just as importantly, whether the tradeoff can be measured rather than asserted.
 
-The framework combines contrastive residual activations, benign-subspace preservation, projection edits, and Optuna-based parameter search.
+## Method
 
-## Evaluation
+The framework has four stages:
 
-The work benchmarked 10 matched model comparisons using refusal, benign-overrefusal, and KL-divergence metrics. Six edited model artifacts were released on Hugging Face.
+1. Collect residual activations for harmful and benign prompts during one-token generation.
+2. Estimate per-layer candidate directions using mean, median, variance-scaled, and hybrid contrastive estimators.
+3. Estimate a low-rank benign PCA subspace from harmless residuals and project the candidate directions out of that subspace.
+4. Apply rank-one or low-rank LoRA edits to attention-output and MLP down-projection modules, then search layer, component, strength, and direction settings with Optuna.
 
-## Scope
+Evaluation tracks harmful-prompt refusals (20 JailbreakBench holdout prompts), benign overrefusals (64 Alpaca holdout prompts), disclaimer markers, heuristic task compliance, and first-token KL divergence from the base model on benign prompts.
 
-These comparisons describe a research framework and its reported evaluation; they do not establish general safety or performance across all models and tasks.
+## What the numbers actually show
+
+Ten matched open-weight model comparisons are reported. The repository's selection rule sorts by fewer harmful refusals, then fewer benign overrefusals, then lower KL. Under that rule, ICONOCLAST wins all ten rows. It has strictly fewer harmful refusals in six rows and lower KL in eight of ten.
+
+The tradeoffs are part of the result, not a footnote:
+
+| Model | ICONOCLAST refusals / overrefusals / KL | HERETIC refusals / overrefusals / KL | Read |
+| --- | --- | --- | --- |
+| Llama-3.1-8B-Instruct | 0/20 · 0/64 · 0.0447 | 1/20 · 0/64 · 0.1854 | ICONOCLAST behavior and utility win |
+| Falcon3-7B-Instruct | 0/20 · 0/64 · 6.1448 | 4/20 · 1/64 · 0.1648 | Behavior win, but a severe KL outlier |
+| Yi-1.5-9B-Chat | 2/20 · 0/64 · 0.0511 | 3/20 · 0/64 · 0.0355 | Fewer refusals, but HERETIC has lower KL |
+
+This is an optimized holdout benchmark, not broad statistical confirmation. A deployment system should impose a hard KL ceiling; the Falcon3 row shows why a single "refusals removed" headline is insufficient.
+
+## Tooling and artifacts
+
+- Python package and CLI for the full abliteration/study workflow.
+- Contrastive activation analysis and per-layer direction estimation.
+- Benign-subspace projection before editing.
+- Optuna-based search and repeatable evaluation.
+- Unit tests.
+- Six released edited model artifacts described by the project.
+
+## My contribution
+
+I built the standalone ICONOCLAST framework and its evaluation workflow: residual analysis, direction estimation, benign-subspace projection, LoRA edit pipeline, Optuna search, evaluator, CLI, and packaging. It is the standalone public artifact split from the broader `NLP_Project` research workspace.
+
+## Limits
+
+- No large-N evaluator outputs were available; the reported numbers are holdout-optimized experiments.
+- The framework changes refusal behavior; it does not provide a safety guarantee, nor does it prove that a model is universally "uncensored" or unchanged.
+- KL divergence is a utility proxy, not a complete measure of capability.
+- The evidence supports a research framework and a set of tradeoffs, not a production compliance claim.
+
+## Links
+
+- [ICONOCLAST repository](https://github.com/Haadesx/Iconoclast)
+- [Original research workspace](https://github.com/Haadesx/NLP_Project)
+- [Publishable results](https://github.com/Haadesx/Iconoclast/blob/main/PUBLISHABLE_RESULTS.md)

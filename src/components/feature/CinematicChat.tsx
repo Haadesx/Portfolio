@@ -118,7 +118,7 @@ export function CinematicChat() {
           <span>MODEL / OPENROUTER</span>
           <span>TOOLS / 8</span>
           <span>TRANSCRIPT / PRIVATE</span>
-          <Link href="/resume.pdf">RÉSUMÉ ↗</Link>
+          <a href="/resume.pdf">RÉSUMÉ ↗</a>
         </div>
       </section>
 
@@ -225,7 +225,7 @@ export function CinematicChat() {
 
         <p className="chat-note">
           Answers use a tool-calling assistant grounded in the portfolio data. Verify time-sensitive
-          details against the <Link href="/projects">case studies</Link> or <Link href="/resume.pdf">résumé</Link>.
+          details against the <Link href="/projects">case studies</Link> or <a href="/resume.pdf">résumé</a>.
         </p>
       </section>
     </div>

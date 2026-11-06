@@ -1,46 +1,67 @@
 {
   "repos": {
+    "Diffusion-Model": {
+      "visible": true,
+      "category": "Deep Learning / Research",
+      "title": "DiffuLLM",
+      "description": "From-scratch discrete diffusion language model using D3PM-style absorbing-mask corruption, DDP/SLURM training, and iterative unmasking.",
+      "order": 1
+    },
+    "Iconoclast": {
+      "visible": true,
+      "category": "LLM Research / Evaluation",
+      "title": "ICONOCLAST",
+      "description": "Representation-editing framework with contrastive activations, benign-subspace preservation, Optuna search, and matched refusal/KL evaluation.",
+      "order": 2
+    },
+    "HackRU26": {
+      "visible": true,
+      "category": "Computer Vision / Applied AI",
+      "title": "MedCheck",
+      "description": "OCR-first medication-label verification prototype with confidence/source metadata, conditional VLM escalation, and human dose confirmation.",
+      "order": 3
+    },
+    "EyeQ": {
+      "visible": true,
+      "category": "Computer Vision",
+      "title": "CareWatch",
+      "description": "Bitcamp 2026 Best Social Good Hack prototype combining pose heuristics, scene verification, 30-second evidence capture, and human review.",
+      "order": 4
+    },
     "realtime-voice-csm": {
       "visible": true,
       "category": "Voice AI",
       "title": "Realtime Voice CSM",
       "description": "Real-time voice conversation system with web audio visualization and GPU acceleration.",
-      "order": 1
+      "order": 5
     },
     "M-Agent": {
       "visible": true,
       "category": "Developer Tools",
       "title": "M-Agent",
       "description": "Markdown-native control plane for task agents, slice agents, and tool-ready workflows.",
-      "order": 2
-    },
-    "EyeQ": {
-      "visible": true,
-      "category": "Computer Vision",
-      "title": "EyeQ Repository",
-      "description": "Repository for the CareWatch hackathon build around caretaker abuse detection and monitoring.",
-      "order": 3
+      "order": 6
     },
     "H-Swarm": {
       "visible": true,
       "category": "Applied AI",
       "title": "H-Swarm",
       "description": "Healthcare scenario workspace for evidence-driven decisions and structured capital memos.",
-      "order": 4
+      "order": 7
     },
     "HackHers26": {
       "visible": true,
       "category": "Payments",
-      "title": "HackHERS 2026 Build",
-      "description": "Hackathon repository for a secure payment liveness and deepfake detection system.",
-      "order": 5
+      "title": "Can't HackHer",
+      "description": "HackHERS 2026 MLH Best Use of Solana prototype for webcam liveness and payment-verification workflows.",
+      "order": 8
     },
     "CleanMac": {
       "visible": true,
       "category": "Swift Utility",
       "title": "CleanMac",
       "description": "A small Swift utility showing product polish outside the core AI stack.",
-      "order": 6
+      "order": 9
     }
   }
 }
