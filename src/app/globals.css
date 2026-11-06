@@ -474,3 +474,77 @@ article .prose table{display:block;max-width:100%;overflow-x:auto;border-collaps
 .reference-publications .publication-paper-link{display:inline-block;margin-top:15px;color:var(--secondary);font:700 9px var(--font-mono);letter-spacing:.07em;text-decoration:none;border-bottom:1px solid #5a3a35;padding-bottom:3px}
 .reference-publications .publication-paper-link:hover{color:#f3f0ea;border-color:#f3f0ea}
 .reference-publications .publication-paper-link:focus-visible{outline:2px solid #7de0e6;outline-offset:4px}
+
+/* Competitive swimming / homepage */
+.reference-swimming{padding-top:100px;padding-bottom:100px;background:linear-gradient(180deg,#111010 0%,#0c0c0c 100%)}
+.swim-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:6%;align-items:center}
+.swim-copy h2{font:700 clamp(2.7rem,5.2vw,5.2rem)/.98 Arial,Helvetica,sans-serif;letter-spacing:-.055em;color:#f5f2ee;margin:16px 0 0;max-width:720px}
+.swim-copy h2 span{color:var(--secondary)}
+.swim-lede{max-width:640px;color:#c6c1bb;font-size:16px;line-height:1.72;margin:24px 0 0}
+.swim-medal{border-left:2px solid var(--secondary);padding:4px 0 4px 22px;margin-top:32px;max-width:640px}
+.swim-medal>span,.swim-university>span{display:block;color:var(--secondary);font:700 9px/1.5 var(--font-mono);letter-spacing:.1em}
+.swim-medal h3{font:700 clamp(1.45rem,2vw,2rem)/1.12 Arial,Helvetica,sans-serif;letter-spacing:-.025em;color:#f5f2ee;margin:8px 0 8px}
+.swim-medal p{font-size:13px;line-height:1.6;color:#bdb9b3;margin:0}
+.swim-medal small{display:block;color:#817b75;font:9px/1.6 var(--font-mono);margin-top:9px;max-width:470px}
+.swim-university{border-top:1px solid #393332;margin-top:26px;padding-top:19px;max-width:640px}
+.swim-university p{font-size:13px;line-height:1.65;color:#bdb9b3;margin:8px 0 12px}
+.swim-university a{display:inline-block;color:#ff8a7e;font:700 9px var(--font-mono);letter-spacing:.06em;text-decoration:none;border-bottom:1px solid #5a3a35;padding-bottom:3px}
+.swim-university a:hover{color:#f3f0ea;border-color:#f3f0ea}
+.swim-university a:focus-visible,.swim-actions a:focus-visible{outline:2px solid #7de0e6;outline-offset:4px}
+.swim-actions{margin-top:28px}
+.swim-visual{position:relative;min-height:440px;border:1px solid #393332;background:#101010;overflow:hidden;display:grid;place-items:center}
+.swim-visual svg{display:block;width:100%;height:auto;max-height:520px}
+.swim-visual-caption{position:absolute;left:18px;bottom:16px;color:#7de0e6;opacity:.55;font:8px var(--font-mono);letter-spacing:.12em}
+.swim-ledger{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #393332;border-bottom:1px solid #393332;margin:48px 0 0;padding:0;list-style:none}
+.swim-ledger>li{padding:18px 22px;border-left:1px solid #393332;min-width:0}
+.swim-ledger>li:first-child{border-left:0;padding-left:0}
+.swim-ledger strong{display:block;color:var(--secondary);font:700 clamp(1.15rem,1.8vw,1.45rem)/1.1 Arial,Helvetica,sans-serif;letter-spacing:-.03em}
+.swim-ledger span{display:block;color:#8f8a84;font:8px/1.5 var(--font-mono);letter-spacing:.07em;margin-top:8px}
+
+/* Competitive swimming / About */
+.about-swimming{margin-top:64px;padding-top:48px;border-top:1px solid #393332}
+.about-swimming h2{font:700 clamp(2rem,4vw,3.1rem)/1.02 Arial,Helvetica,sans-serif;letter-spacing:-.045em;color:#f5f2ee;margin:14px 0 0}
+.about-swimming h2 span{color:var(--secondary)}
+.about-swimming-copy{margin-top:28px}
+.about-swimming-copy p{font-size:15px;line-height:1.75;color:#bdb9b3;margin:0 0 18px}
+.swim-milestones-heading{margin:42px 0 18px;border-top:1px solid #393332;padding-top:24px}
+.swim-milestones-heading h3,.swim-evidence-heading h3{font:700 clamp(1.5rem,2.4vw,2rem)/1.05 Arial,Helvetica,sans-serif;letter-spacing:-.03em;color:#f5f2ee;margin:8px 0 8px}
+.swim-milestones-heading h3 span,.swim-evidence-heading h3 span{color:var(--secondary)}
+.swim-milestones-heading>p:last-child,.swim-evidence-heading>p:last-child{font-size:13px;line-height:1.65;color:#9f9a94;margin:0;max-width:620px}
+.swim-timeline{list-style:none;margin:0;padding:0;border-top:1px solid #393332}
+.swim-timeline>li{display:grid;grid-template-columns:180px minmax(0,1fr);gap:28px;padding:20px 0;border-bottom:1px solid #393332}
+.swim-timeline-marker span{display:block;color:var(--secondary);font:700 9px/1.5 var(--font-mono);letter-spacing:.09em}
+.swim-timeline-marker small{display:block;color:#8f8a84;font:9px/1.5 var(--font-mono);letter-spacing:.06em;margin-top:6px}
+.swim-timeline-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:7px}
+.swim-timeline-meta>span:first-child{color:#8f8a84;font:8px var(--font-mono);letter-spacing:.08em}
+.swim-status{border:1px solid #4a3a36;padding:2px 6px;color:#d88f84;font:7px var(--font-mono);letter-spacing:.05em}
+.swim-timeline-content h4{font:700 1.1rem/1.2 Arial,Helvetica,sans-serif;letter-spacing:-.015em;color:#f5f2ee;margin:0 0 7px}
+.swim-timeline-content p{font-size:13px;line-height:1.65;color:#bdb9b3;margin:0}
+.swim-timeline-content .swim-venue{color:#8f8a84;font:10px var(--font-mono);margin-top:8px}
+.swim-evidence{margin-top:44px;border:1px solid #393332;background:#151414;padding:26px}
+.swim-evidence-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:22px;border-top:1px solid #393332}
+.swim-evidence-list a{display:flex;flex-direction:column;padding:18px 22px 20px 0;border-bottom:1px solid #393332;text-decoration:none;border-right:1px solid #393332}
+.swim-evidence-list a:nth-child(even){padding-left:22px;padding-right:0;border-right:0}
+.swim-evidence-list a>span{color:var(--secondary);font:700 8px var(--font-mono);letter-spacing:.09em}
+.swim-evidence-list strong{color:#f5f2ee;font:700 10px var(--font-mono);letter-spacing:.04em;margin:9px 0 7px}
+.swim-evidence-list a:hover strong{color:#ff8a7e}
+.swim-evidence-list a:focus-visible{outline:2px solid #7de0e6;outline-offset:4px}
+.swim-evidence-list p{font-size:11px;line-height:1.6;color:#9f9a94;margin:0}
+.swim-source-note{color:#817b75;font:10px/1.7 var(--font-mono);margin:20px 0 0;max-width:680px}
+@media(max-width:900px){
+  .reference-swimming{padding-top:70px;padding-bottom:70px}
+  .swim-layout{grid-template-columns:1fr;gap:30px}
+  .swim-visual{min-height:300px}
+  .swim-ledger{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:34px}
+  .swim-ledger>li:nth-child(3){border-left:0;padding-left:0;border-top:1px solid #393332}
+  .swim-ledger>li:nth-child(4){border-top:1px solid #393332}
+}
+@media(max-width:600px){
+  .about-swimming{margin-top:48px;padding-top:36px}
+  .swim-timeline>li{grid-template-columns:1fr;gap:8px;padding:18px 0}
+  .swim-evidence{padding:20px}
+  .swim-evidence-list{grid-template-columns:1fr}
+  .swim-evidence-list a,.swim-evidence-list a:nth-child(even){padding:16px 0;border-right:0}
+  .swim-visual{min-height:240px}
+  .swim-ledger strong{font-size:1.2rem}
+}
