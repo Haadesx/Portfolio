@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { swimmingEvidence, swimmingFacts, swimmingIntro } from "@/data/swimming";
+import {
+  swimmingEvidence,
+  swimmingFacts,
+  swimmingIntro,
+  swimmingProgression,
+} from "@/data/swimming";
 
 export function SwimmingSection() {
   const universityRecord = swimmingEvidence.find((item) => item.id === "cvmu");
@@ -17,6 +22,16 @@ export function SwimmingSection() {
             Two Decades in the Water<span>.</span>
           </h2>
           <p className="swim-lede">{swimmingIntro}</p>
+
+          <ol className="swim-progression" aria-label="Competitive progression">
+            {swimmingProgression.map((step) => (
+              <li key={step.id}>
+                <span>{step.marker}</span>
+                <strong>{step.title}</strong>
+                <small>{step.detail}</small>
+              </li>
+            ))}
+          </ol>
 
           <div className="swim-medal">
             <span>2015 / STATE LEVEL</span>
