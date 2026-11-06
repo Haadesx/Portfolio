@@ -12,7 +12,11 @@ export type Project = {
     paperUrl?: string;
     images?: string[];
     isFlagship?: boolean;
+    evidenceNote?: string;
 };
+
+const selfReportedEvidenceNote =
+    "Self-reported from the original project; no public dataset, repository, or evaluation artifact is linked, and the figures have not been independently reproduced in this portfolio.";
 
 export const projects: Project[] = [
     {
@@ -24,6 +28,7 @@ export const projects: Project[] = [
         problem: "Classifying 1,150 bird species from a massive 710GB unstructured dataset.",
         approach: "Two-stage deep learning pipeline with custom preprocessing.",
         resultsMetrics: ["79% Validation Accuracy", "1,150 Species Covered"],
+        evidenceNote: selfReportedEvidenceNote,
     },
     {
         slug: "fatigue-prediction",
@@ -34,6 +39,7 @@ export const projects: Project[] = [
         problem: "Quantifying daily fatigue using noisy wearable sensor data.",
         approach: "PyTorch model with CORAL ordinal logs and extensive feature engineering over 20 iterations.",
         resultsMetrics: ["0.25 MAE (down from 1.17)", "85% Accuracy", "78% MAE Reduction"],
+        evidenceNote: selfReportedEvidenceNote,
     },
     {
         slug: "pdf-helper",
@@ -44,6 +50,7 @@ export const projects: Project[] = [
         problem: "Efficiently retrieving context from large PDF repositories.",
         approach: "Vector search with Qdrant and LLaMA 3.2 embeddings.",
         resultsMetrics: ["Improved retrieval efficiency"],
+        evidenceNote: selfReportedEvidenceNote,
     },
     {
         slug: "emotion-spotify",
@@ -54,6 +61,7 @@ export const projects: Project[] = [
         problem: "Static playlists don't match real-time user mood.",
         approach: "Facial emotion recognition CNN integrated with music recommendation engine.",
         resultsMetrics: ["95.83% Emotion Recognition Accuracy"],
+        evidenceNote: selfReportedEvidenceNote,
     },
     {
         slug: "medcheck", title: "MedCheck — Vision-Assisted Medication Label Verification",

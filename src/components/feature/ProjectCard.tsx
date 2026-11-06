@@ -41,12 +41,18 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
 
                 <div className="mb-4 text-sm text-foreground/80">
                     <p>{project.shortDescription}</p>
-                    <div className="mt-2 text-xs opacity-80">
-                        <span className="font-mono text-secondary">Problem:</span> {project.problem}
+                    <div className="mt-2 text-xs">
+                        <span className="font-mono text-[#ff9d92]">Problem:</span> {project.problem}
                     </div>
-                    <div className="mt-1 text-xs opacity-80">
-                        <span className="font-mono text-secondary">Evidence:</span> {project.resultsMetrics[0]}
+                    <div className="mt-1 text-xs">
+                        <span className="font-mono text-[#ff9d92]">Evidence:</span> {project.resultsMetrics[0]}
                     </div>
+                    {project.evidenceNote ? (
+                        <p className="mt-3 border-l-2 border-secondary/40 pl-2 text-xs leading-relaxed text-[#a8a29b]">
+                            <span className="font-mono uppercase tracking-wide text-[#c7c2bb]">Evidence note:</span>{" "}
+                            {project.evidenceNote}
+                        </p>
+                    ) : null}
                 </div>
             </div>
 

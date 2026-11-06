@@ -595,3 +595,78 @@ article .prose table{display:block;max-width:100%;overflow-x:auto;border-collaps
   .hero[data-hero-decode] .identity-tile,
   .hero[data-hero-decode] .nameplate { opacity: 0; }
 }
+
+/* ===== PR2 UX: research page, mobile navigation, footer links, 404, chat viewport fit, contrast ===== */
+
+/* Research page (/research) */
+.research-hero{max-width:1600px;margin:0 auto;padding:72px 5% 56px;border-bottom:1px solid #393735}
+.research-title{font-family:Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:clamp(3.4rem,9vw,8rem);line-height:.88;letter-spacing:-.02em;text-transform:uppercase;margin:20px 0 22px;color:var(--primary)}
+.research-title span{color:var(--secondary)}
+.research-lede{max-width:640px;color:#bdb9b3;font-size:16px;line-height:1.7;margin:0}
+.research-hero .hero-actions{margin-top:30px}
+.research-publication{display:flex;flex-direction:column}
+.research-doi{color:#aaa6a0!important;font:10px/1.6 var(--font-mono)!important;letter-spacing:.05em;margin:10px 0 0!important;word-break:break-all}
+.research-footer{max-width:1600px;margin:0 auto;padding:72px 5% 96px;border-top:1px solid #393735;display:flex;justify-content:space-between;gap:32px;align-items:end;flex-wrap:wrap}
+.research-footer h2{font:700 clamp(1.6rem,2.4vw,2.4rem)/1.1 Arial,Helvetica,sans-serif;letter-spacing:-.035em;margin:12px 0 10px;color:var(--primary)}
+.research-footer p:not(.eyebrow){max-width:560px;color:#bdb9b3;font-size:14px;line-height:1.65;margin:0}
+.research-footer-links{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center}
+.research-footer-links a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:700px){.research-hero{padding:48px 5% 40px}.research-title{font-size:clamp(3rem,13vw,4.4rem)}.research-footer{padding:52px 5% 72px;align-items:start;flex-direction:column}}
+
+/* Footer navigation links (added alongside the existing icon row) */
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 20px;margin:0 0 10px}
+.footer-links a{display:inline-flex;align-items:center;min-height:44px;color:#aaa6a0;font:700 10px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.footer-links a:hover,.footer-links a:focus-visible{color:#ff9d92}
+.footer-links a:focus-visible{outline:2px solid #7de0e6;outline-offset:2px}
+
+/* Mobile navigation: native <details> disclosure, >=44px targets, 12-14px labels */
+.site-header .desktop-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px}
+.mobile-menu{display:none;position:relative}
+.mobile-menu>summary{display:inline-flex;align-items:center;gap:9px;min-height:44px;min-width:44px;padding:0 12px;border:1px solid #494541;color:#f3f0ea;font:700 13px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;list-style:none}
+.mobile-menu>summary::-webkit-details-marker{display:none}
+.mobile-menu>summary::before{content:"";width:16px;height:2px;background:currentColor;box-shadow:0 -5px 0 currentColor,0 5px 0 currentColor}
+.mobile-menu>summary:hover,.mobile-menu[open]>summary{color:#ff9d92;border-color:#7d3732}
+.mobile-menu>summary:focus-visible{outline:2px solid #7de0e6;outline-offset:3px}
+.mobile-menu nav{position:absolute;right:0;top:calc(100% + 10px);z-index:80;display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:min(82vw,300px);max-width:min(92vw,340px);padding:6px;background:#151414;border:1px solid #494541;box-shadow:0 22px 60px #000b}
+.mobile-menu nav a{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px;padding:0 14px;border-bottom:1px solid #2c2927;color:#dedbd6;font:700 13px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;white-space:normal}
+.mobile-menu nav a:last-child{border-bottom:0}
+.mobile-menu nav a:hover,.mobile-menu nav a:focus-visible{color:#ff9d92;background:#1d1918}
+.mobile-menu nav a:focus-visible{outline:2px solid #7de0e6;outline-offset:-2px}
+.mobile-menu nav a span[aria-hidden="true"]{color:#f15b4e;font-size:12px}
+@media(max-width:700px){.header-inner>.desktop-nav{display:none}.mobile-menu{display:block}}
+
+/* Custom 404 (root app/not-found.tsx) */
+.not-found-page{background:#101010;color:#dedbd6}
+.not-found{max-width:1600px;margin:0 auto;padding:clamp(64px,12vh,150px) 5% clamp(64px,10vh,130px)}
+.not-found-title{font-family:Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:clamp(3.2rem,10vw,8.5rem);line-height:.9;letter-spacing:-.02em;text-transform:uppercase;margin:18px 0 24px;color:var(--primary)}
+.not-found-title span{color:var(--secondary)}
+.not-found-lede{max-width:560px;color:#bdb9b3;font-size:16px;line-height:1.7;margin:0}
+.not-found-links{display:flex;flex-wrap:wrap;gap:16px 26px;margin-top:34px;align-items:center}
+.not-found-links a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:600px){.not-found{padding:56px 5% 80px}.not-found-title{font-size:clamp(2.8rem,13vw,4.2rem)}}
+
+/* Chat page: fit the console to the viewport so the composer is visible without scrolling */
+.chat-page{--chat-header:70px;min-height:calc(100vh - var(--chat-header));min-height:calc(100dvh - var(--chat-header));display:flex;flex-direction:column;padding-top:clamp(24px,4vh,56px);padding-bottom:clamp(20px,3vh,48px)}
+.chat-heading{margin-bottom:clamp(18px,2.6vh,34px)}
+.chat-console{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.chat-page .chat-messages{flex:1 1 auto;min-height:120px;max-height:none}
+.chat-console-header,.chat-suggestions,.chat-form,.chat-note,.chat-error{flex:0 0 auto}
+@media(max-height:900px){
+  .chat-heading h1{font-size:clamp(2.6rem,4.6vw,4.2rem);margin:8px 0 12px}
+  .chat-heading-meta{display:none}
+  .chat-heading>div:first-child>p:last-child{font-size:14px;line-height:1.55}
+}
+@media(max-width:700px){
+  .chat-page{padding-top:24px;padding-bottom:20px}
+  .chat-heading{margin-bottom:14px}
+  .chat-heading h1{font-size:clamp(2.2rem,10vw,3rem);margin:6px 0 10px}
+  .chat-heading>div:first-child>p:last-child{font-size:13px;line-height:1.5}
+  .chat-heading-meta{display:none}
+  .chat-page .chat-messages{min-height:96px}
+}
+@media(max-width:540px){.chat-page{--chat-header:62px}}
+
+/* Contrast fixes (WCAG AA >= 4.5:1 on the surfaces these labels sit on) */
+.award-note{color:#a8a29b}
+.tile-label{background:#101010e6;padding:3px 7px;color:#f7f3ed;text-shadow:none}
+.swim-visual-caption{color:#8fe9ef;opacity:1}
