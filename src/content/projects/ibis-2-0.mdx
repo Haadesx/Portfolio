@@ -3,12 +3,12 @@ title: "IBIS 2.0"
 ---
 
 ## Overview
-The **IBIS 2.0 (Intelligent Bird Identification System)** is an enterprise-scale AI solution developed for the **Foundation for Ecological Security**. The system automates the classification of bird species from a massive, unstructured dataset of over **710GB** images across **1,150 species**.
+The **IBIS 2.0 (Intelligent Bird Identification System)** is a bird-species classification system built for the **Foundation for Ecological Security**. It classifies birds automatically from more than **710GB** of unstructured images covering **1,150 species**.
 
-We replaced manual classification workflows with a deep learning pipeline, achieving **79% validation accuracy** and providing researchers with both a CLI and a GUI for rapid inference.
+We replaced manual classification with a deep learning pipeline that reached **79% validation accuracy**, and gave researchers both a CLI and a GUI for fast inference.
 
 ## Architecture
-The system follows a modular architecture designed for scalability and reproducibility:
+The pipeline looks like this:
 
 ```mermaid
 flowchart LR
@@ -28,16 +28,16 @@ flowchart LR
   - Custom augmentation (RandomHorizontalFlip, ColorJitter) to handle lighting variations in field photography.
 
 ## Model Approach
-We employed a **ResNet-50** backbone pretrained on ImageNet, fine-tuned on our dataset using **PyTorch**.
+We fine-tuned a **ResNet-50** backbone pretrained on ImageNet, using **PyTorch**.
 
-### Training Details:
+### Training Details
 - **Optimizer:** AdamW with weight decay `1e-4`.
 - **Scheduler:** OneCycleLR for faster convergence.
 - **Loss Function:** CrossEntropyLoss with class weights to mitigate imbalance.
 - **Hardware:** Trained on NVIDIA A100 GPUs.
 
 ## Results
-The model demonstrated strong performance on the validation set:
+Results on the validation set:
 
 | Metric | Score | Note |
 |:-------|:------|:-----|
@@ -45,9 +45,9 @@ The model demonstrated strong performance on the validation set:
 | Top-5 Acc | **92%** | Correct species in top 5 predictions |
 | F1-Score | **0.76** | Macro-average |
 
-*Note: The confusion matrix indicates high confusion among visually similar sub-species (e.g., sparrows), which is a known challenge in ornithology.*
+*Note: The confusion matrix shows heavy confusion among visually similar sub-species (e.g. sparrows), a known challenge in ornithology.*
 
 ## Deployment
-We delivered the model as a self-contained package with:
+We shipped the model as a self-contained package:
 1. **Gradio Interface:** For non-technical researchers to upload images and visualize predictions.
 2. **CLI Tool:** For batch processing entire folders of survey data.

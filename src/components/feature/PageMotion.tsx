@@ -180,6 +180,14 @@ export function PageMotion() {
         }
         try { reveal(element, Math.min(index * 91, 560)); } catch { restore(element); }
       });
+      // Fast scrolls can skip past a target between frames. If an unobserved
+      // target is already above the viewport, restore it so text never stays
+      // stuck at opacity 0.
+      entries.filter((entry) => !entry.isIntersecting && entry.boundingClientRect.bottom < 0).forEach((entry) => {
+        const element = entry.target as HTMLElement;
+        observer.unobserve(element);
+        restore(element);
+      });
     }, { threshold: 0, rootMargin: "0px 0px -5% 0px" });
 
     targets.forEach((element) => {
@@ -209,7 +217,22 @@ export function PageMotion() {
       hero?.removeAttribute("data-hero-decode");
     }
 
-    root.querySelectorAll<HTMLElement>(".reference-heading, .about-columns > div, .flagship-panel, .recent-project, .award-card, .oss-card, .matrix-card, .experience-panel, .skill-card, .publication-list > div, .reference-swimming, .reference-contact").forEach((element) => observer.observe(element));
+    root.querySelectorAll<HTMLElement>(".reference-heading, .about-columns > div, .flagship-panel, .recent-project, .selected-work-footer, .experience-panel, .capability-panel, .credibility-column, .award-card, .publication-list > div, .swim-band, .reference-contact, .about-hero, .about-section, .about-links").forEach((element) => observer.observe(element));
+    // Safety sweep: if a fast flick scrolls an unrevealed target fully above the
+    // viewport, restore it instead of leaving it at opacity 0.
+    let sweepFrame = 0;
+    const sweepPassed = () => {
+      sweepFrame = 0;
+      if (disposed || motion.matches) return;
+      pending.forEach((_, element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < 0) restore(element);
+      });
+    };
+    const onScroll = () => {
+      if (!sweepFrame) sweepFrame = requestAnimationFrame(sweepPassed);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     const onFocus = (event: FocusEvent) => {
       const focused = event.target as Element;
       pending.forEach((_, element) => { if (element === focused || element.contains(focused)) restore(element); });
@@ -221,6 +244,8 @@ export function PageMotion() {
       observer.disconnect();
       active.forEach((finish) => finish());
       pending.forEach((_, element) => restore(element));
+      if (sweepFrame) cancelAnimationFrame(sweepFrame);
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("focusin", onFocus);
       layer.remove();
     };

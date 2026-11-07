@@ -17,13 +17,13 @@ export default function ContactPage() {
       <section className="contact-hero" aria-labelledby="contact-title">
         <p className="eyebrow">CONTACT / DIRECT LINE</p>
         <h1 id="contact-title">
-          Let&apos;s build something
+          Tell me what
           <br />
-          <span>worth understanding.</span>
+          <span>you&apos;re building.</span>
         </h1>
         <p>
-          I&apos;m open to machine learning and computer vision roles, research collaborations,
-          and applied AI problems. Email is the most direct way to reach me.
+          I&apos;m looking for machine learning and computer vision roles, research
+          collaborations, and applied AI work. Email is the fastest way to reach me.
         </p>
       </section>
 

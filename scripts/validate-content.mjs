@@ -39,24 +39,9 @@ for (const slug of uniqueProjectSlugs) {
   if (!archived.has(slug)) failures.push(`Project is missing from the curated archive groups: ${slug}`);
 }
 
-const furtherWorkMatch = curationSource.match(/export const furtherWorkSlugs = \[([^\]]+)\]/);
-const furtherWork = furtherWorkMatch
-  ? [...furtherWorkMatch[1].matchAll(/["']([^"']+)["']/g)].map((match) => match[1])
-  : [];
-const ossBlock = curationSource.split("export const openSourceHighlights")[1]?.split("export const archiveGroups")[0] ?? "";
-if (!furtherWorkMatch) failures.push("Missing furtherWorkSlugs curation array");
-if (!ossBlock) failures.push("Missing openSourceHighlights curation block");
-const ossSlugs = [...ossBlock.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]);
-const repeated = furtherWork.filter((slug) => ossSlugs.includes(slug));
-if (repeated.length) {
-  failures.push(`Homepage project listings repeat between More engineering and Released work: ${repeated.join(", ")}`);
-}
-for (const slug of [...furtherWork, ...ossSlugs]) {
-  if (!uniqueProjectSlugs.has(slug)) failures.push(`Homepage curation references unknown project slug: ${slug}`);
-}
-
 for (const path of [
   "src/app/(site)/page.tsx",
+  "src/app/(site)/about/page.tsx",
   "src/app/(site)/projects/page.tsx",
   "src/components/feature/FlagshipPanel.tsx",
   "src/components/feature/ProjectList.tsx",
@@ -65,6 +50,32 @@ for (const path of [
 }
 
 const homepageSource = read("src/app/(site)/page.tsx");
+
+// The homepage must keep every flagship and the recent spotlight reachable, and
+// must send visitors to the full archive rather than duplicating it.
+const featuredMatch = curationSource.match(/export const featuredFlagships[^=]*=\s*\[([\s\S]*?)\n\];/);
+const featuredSlugs = featuredMatch
+  ? [...featuredMatch[1].matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1])
+  : [];
+const spotlightMatch = curationSource.match(/export const medcheckSpotlight\s*=\s*\{([\s\S]*?)\n\};/);
+const spotlightSlug = spotlightMatch?.[1].match(/slug:\s*["']([^"']+)["']/)?.[1];
+if (featuredSlugs.length !== 3) failures.push(`Expected 3 featured flagships, found ${featuredSlugs.length}`);
+if (!spotlightSlug) failures.push("Missing medcheckSpotlight slug");
+if (!homepageSource.includes("featuredFlagships")) {
+  failures.push("Homepage does not render the curated flagships");
+}
+if (!homepageSource.includes("medcheckSpotlight")) {
+  failures.push("Homepage does not render the recent-work spotlight");
+}
+if (
+  spotlightSlug &&
+  !homepageSource.includes(`/projects/${spotlightSlug}`) &&
+  !homepageSource.includes("medcheck.slug")
+) {
+  failures.push(`Homepage does not link the spotlight case study: ${spotlightSlug}`);
+}
+if (!homepageSource.includes("/projects")) failures.push("Homepage does not link to the project archive");
+
 const publicationLinks = [
   "https://doi.org/10.1007/978-3-032-02949-2_2",
   "https://www.ijirmf.com/wp-content/uploads/NOBCON-2024-min.pdf#page=17",
@@ -74,8 +85,14 @@ for (const url of publicationLinks) {
   if (!homepageSource.includes(url)) failures.push(`Missing official publication link: ${url}`);
 }
 const publicationLinkCount = (homepageSource.match(/className="publication-paper-link"/g) ?? []).length;
-if (publicationLinkCount !== publicationLinks.length) {
-  failures.push(`Expected ${publicationLinks.length} publication links, found ${publicationLinkCount}`);
+if (publicationLinkCount < 1) {
+  failures.push("Homepage renders no publication-paper-link elements");
+}
+const homepagePublicationEntries = (homepageSource.match(/^\s+url: "https?:\/\//gm) ?? []).length;
+if (homepagePublicationEntries !== publicationLinks.length) {
+  failures.push(
+    `Expected ${publicationLinks.length} homepage publication entries, found ${homepagePublicationEntries}`,
+  );
 }
 
 for (const [needle, reason] of [
@@ -98,5 +115,5 @@ if (failures.length) {
 }
 
 console.log(
-  `Content validation passed: ${uniqueProjectSlugs.size} projects, ${mdxFiles.length} MDX case studies, ${archived.size} archived slugs.`,
+  `Content validation passed: ${uniqueProjectSlugs.size} projects, ${mdxFiles.length} MDX case studies, ${archived.size} archived slugs, ${featuredSlugs.length} flagships.`,
 );

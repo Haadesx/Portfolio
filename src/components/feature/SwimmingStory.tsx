@@ -58,7 +58,7 @@ export function SwimmingStory() {
       </div>
 
       <div className="swim-milestones-heading">
-        <p className="eyebrow">A PERSONAL TIMELINE / 2006—2024</p>
+        <p className="eyebrow">A PERSONAL TIMELINE / 2006–2024</p>
         <h3>Milestones<span>.</span></h3>
         <p>
           Selected milestones from a longer competitive history, ordered chronologically. This
