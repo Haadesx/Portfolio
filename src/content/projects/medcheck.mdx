@@ -1,10 +1,10 @@
 ---
-title: "MedCheck — Vision-Assisted Medication Label Verification"
+title: "MedCheck: Vision-Assisted Medication Label Verification"
 ---
 
 ## The problem
 
-A caregiver needs to answer a narrow question: **does this bottle match the tracked medication, and is a dose actually due?** Reading a label is not the same as making a medication decision, and a model should not silently bridge that gap.
+A caregiver needs to answer one narrow question: **does this bottle match the tracked medication, and is a dose actually due?** Reading a label is not the same as making a medication decision, and the model should never be the one that makes that call.
 
 MedCheck is an OCR-first label-verification prototype built at HackRU 2026. It turns a photo into reviewable evidence, compares it with a tracked prescription, and requires a separate human confirmation before any dose is recorded.
 
@@ -19,7 +19,7 @@ The architecture is shaped by explicit constraints:
 - Missing or ambiguous name/strength evidence produces `uncertain` or a rescan, not a guess.
 - A scan never fabricates drug data; raw source text is retained.
 
-These are product requirements, not claims that the prototype has been clinically validated.
+These are product requirements, not a claim that the prototype has been clinically validated.
 
 ## How it works
 
@@ -35,7 +35,7 @@ photo(s)
   → explicit confirmation before dose history
 ```
 
-The inference service reports what it can read; the Flask/TimescaleDB backend owns medication authority. A React/Vite dashboard supports scan, verify, review, confirm, history, supply, and adherence views. A separate SwiftUI preview is described in the README, but the audited repository's provenance record says no iOS app is present there; treat the iOS surface as a preview, not a shipped client.
+The inference service reports what it can read; the Flask/TimescaleDB backend owns medication authority. A React/Vite dashboard supports scan, verify, review, confirm, history, supply, and adherence views. The README also describes a separate SwiftUI preview, but the audited repository's provenance record says no iOS app is present there. Treat the iOS surface as a preview, not a shipped client.
 
 ## Contribution and provenance
 
@@ -47,7 +47,7 @@ I originated and directed the project: I set the OCR-first architecture, the saf
 - A UI-only mock-data mode exists for design review. It is not the live verification pipeline.
 - The full stack is a local development environment, not a hosted medication service.
 - No clinical validation, medication-correctness accuracy, or patient-safety claim is made.
-- OCR and VLM output can be wrong; confidence, provenance, and human review are the mitigation, not a guarantee.
+- OCR and VLM output can be wrong. Confidence, provenance, and human review are the mitigation, not a guarantee.
 
 ## Links
 

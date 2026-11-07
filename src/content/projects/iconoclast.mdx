@@ -1,12 +1,12 @@
 ---
-title: "ICONOCLAST — Evaluating Targeted LLM Representation Edits"
+title: "ICONOCLAST: Evaluating Targeted LLM Representation Edits"
 ---
 
 ## Motivation
 
-Directional abliteration can reduce unwanted refusals in an open-weight language model, but the edit often has a utility cost: benign requests may be refused, or the model's next-token distribution may drift from the base model.
+Directional abliteration can reduce unwanted refusals in an open-weight language model, but the edit often costs utility: benign requests may be refused, or the next-token distribution may drift from the base model.
 
-ICONOCLAST asks whether a more careful edit can change the target behavior while doing less collateral damage — and, just as importantly, whether the tradeoff can be measured rather than asserted.
+ICONOCLAST asks whether a more careful edit can change the target behavior with less collateral damage, and whether that tradeoff can be measured instead of asserted.
 
 ## Method
 
@@ -23,7 +23,7 @@ Evaluation tracks harmful-prompt refusals (20 JailbreakBench holdout prompts), b
 
 Ten matched open-weight model comparisons are reported. The repository's selection rule sorts by fewer harmful refusals, then fewer benign overrefusals, then lower KL. Under that rule, ICONOCLAST wins all ten rows. It has strictly fewer harmful refusals in six rows and lower KL in eight of ten.
 
-The tradeoffs are part of the result, not a footnote:
+The tradeoffs matter as much as the wins:
 
 | Model | ICONOCLAST refusals / overrefusals / KL | HERETIC refusals / overrefusals / KL | Read |
 | --- | --- | --- | --- |
@@ -31,7 +31,7 @@ The tradeoffs are part of the result, not a footnote:
 | Falcon3-7B-Instruct | 0/20 · 0/64 · 6.1448 | 4/20 · 1/64 · 0.1648 | Behavior win, but a severe KL outlier |
 | Yi-1.5-9B-Chat | 2/20 · 0/64 · 0.0511 | 3/20 · 0/64 · 0.0355 | Fewer refusals, but HERETIC has lower KL |
 
-This is an optimized holdout benchmark, not broad statistical confirmation. A deployment system should impose a hard KL ceiling; the Falcon3 row shows why a single "refusals removed" headline is insufficient.
+This is an optimized holdout benchmark, not broad statistical confirmation. A deployment system should impose a hard KL ceiling; the Falcon3 row shows why a "refusals removed" headline on its own is not enough.
 
 ## Tooling and artifacts
 

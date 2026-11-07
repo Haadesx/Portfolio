@@ -3,27 +3,126 @@ import { SwimmingStory } from "@/components/feature/SwimmingStory";
 
 export const metadata = {
     title: "About | Varesh Patel",
-    description: "Varesh Patel’s background in machine learning, computer vision, applied AI, and competitive swimming.",
+    description:
+        "Varesh Patel’s background in machine learning, computer vision, applied AI, education, and competitive swimming.",
 };
 
 export default function AboutPage() {
     return (
-        <div className="container mx-auto px-4 sm:px-8 py-12 max-w-3xl min-h-[80vh]">
-            <h1 className="text-4xl font-bold text-primary mb-8">About Me</h1>
-            <div className="space-y-6 text-lg text-foreground/80 leading-relaxed">
-                <p>I’m <strong>Varesh Patel</strong>, a machine learning engineer interested in computer vision, applied AI, and building systems that are easier to inspect and debug.</p>
-                <p>Most recently, I built Python/FastMCP integrations at Impruvon Health and trained a discrete diffusion language model from scratch. My work spans computer vision, representation editing, edge inference, and prototypes that turn machine learning into usable workflows. I care about clear evaluation, reproducible experiments, and understanding where a system can fail.</p>
-                <h2 className="text-2xl font-bold text-primary mt-12">Selected work</h2>
-                <p>I trained <Link href="/projects/diffullm" className="text-secondary hover:underline">DiffuLLM</Link>, a discrete diffusion language model; built <Link href="/projects/iconoclast" className="text-secondary hover:underline">ICONOCLAST</Link>, an evaluated representation-editing framework; and worked on <Link href="/projects/carewatch" className="text-secondary hover:underline">CareWatch</Link>, a computer-vision safety-review prototype. <Link href="/projects/medcheck" className="text-secondary hover:underline">MedCheck</Link> is a more recent OCR-first applied-vision build.</p>
-                <h2 className="text-2xl font-bold text-primary mt-12">Education</h2>
-                <p><strong>Rutgers University</strong> — M.S. in Computer Science, September 2025–May 2027 (expected); GPA: 3.98/4.00.</p>
-                <p><strong>G.H. Patel College of Engineering and Technology</strong> — B.Tech in Computer Science and Design, September 2021–April 2025; CGPA: 8.3/10.</p>
-                <h2 className="text-2xl font-bold text-primary mt-12">Beyond the model</h2>
-                <p>As IEEE GCET Student Branch secretary, I organized technical and networking events and coordinated branch operations. I have also created Adobe Express content and run workshops for the Rutgers community as a student ambassador.</p>
-                <p>I published <a href="https://pypi.org/project/lootqdm/" className="text-secondary hover:underline">lootqdm</a>, a Python training-loop toolkit with PyTorch and Keras integrations.</p>
+        <div className="editorial about-page">
+            <section className="about-hero" aria-labelledby="about-title">
+                <p className="eyebrow">ABOUT / VARESH PATEL</p>
+                <h1 id="about-title">The longer version<span>.</span></h1>
+                <p className="about-lede">
+                    I’m Varesh Patel, a machine learning engineer working on computer vision,
+                    applied AI, and the systems around a model. I care about evaluation, and about
+                    knowing where a system can fail.
+                </p>
+                <div className="about-actions">
+                    <Link className="button-primary" href="/projects">Explore the case studies <span>↗</span></Link>
+                    <a className="text-link" href="/resume.pdf">View résumé ↗</a>
+                    <Link className="text-link" href="/contact">Contact ↗</Link>
+                </div>
+            </section>
+
+            <section className="editorial-section about-section" aria-labelledby="approach-title">
+                <div className="reference-heading" data-reveal>
+                    <p className="eyebrow">BACKGROUND / HOW I WORK</p>
+                    <h2 id="approach-title" data-decode>From data to something usable<span>.</span></h2>
+                </div>
+                <div className="about-prose" data-reveal>
+                    <p>
+                        My work usually starts with unstructured data and ends with a model someone
+                        can use. I have trained language and vision models from scratch, studied how
+                        representation edits change behavior, and built the interfaces around the
+                        result. I care about the whole path: the data, the evaluation, and the
+                        interface.
+                    </p>
+                    <p>
+                        I’m an M.S. computer science candidate at Rutgers, expected May 2027, with a
+                        3.98/4.00 GPA. My work spans computer vision, diffusion language modeling,
+                        representation editing, and applied AI systems. Most recently I built AI
+                        tooling at Impruvon Health.
+                    </p>
+                    <p>
+                        Outside a course or a job, I build things to answer a question: a diffusion
+                        model to see whether denoising can generate text, a representation-editing
+                        framework to measure the cost of an edit, or a terminal tool because a
+                        training loop should be easier to watch.
+                    </p>
+                </div>
+            </section>
+
+            <section className="editorial-section about-section" aria-labelledby="education-title">
+                <div className="reference-heading" data-reveal>
+                    <p className="eyebrow">EDUCATION / FORMAL TRAINING</p>
+                    <h2 id="education-title" data-decode>Education<span>.</span></h2>
+                </div>
+                <ul className="about-education" data-reveal>
+                    <li>
+                        <strong>Rutgers University</strong>
+                        <span>Sep 2025 – May 2027 (expected)</span>
+                        <p>M.S. in Computer Science, New Brunswick, NJ. GPA 3.98/4.00.</p>
+                    </li>
+                    <li>
+                        <strong>G.H. Patel College of Engineering and Technology</strong>
+                        <span>Sep 2021 – Apr 2025</span>
+                        <p>B.Tech in Computer Science and Design, Anand, Gujarat, India. CGPA 8.3/10.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section className="editorial-section about-section" aria-labelledby="beyond-title">
+                <div className="reference-heading" data-reveal>
+                    <p className="eyebrow">BEYOND THE MODEL / COMMUNITY AND TOOLS</p>
+                    <h2 id="beyond-title" data-decode>Beyond engineering<span>.</span></h2>
+                </div>
+                <div className="about-beyond" data-reveal>
+                    <div>
+                        <h3>IEEE GCET Student Branch</h3>
+                        <p>
+                            As branch secretary I organized more than 39 technical and networking
+                            events and coordinated branch operations.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Adobe Campus Ambassador</h3>
+                        <p>
+                            Ran Adobe Express workshops and made content for the Rutgers student
+                            community.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>lootqdm</h3>
+                        <p>
+                            Published{" "}
+                            <a href="https://pypi.org/project/lootqdm/" target="_blank" rel="noopener noreferrer">
+                                lootqdm
+                            </a>{" "}
+                            on PyPI, a training-loop toolkit with PyTorch and Keras integrations.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Open source</h3>
+                        <p>
+                            Edge inference, browser LLM benchmarks, and pose-estimation work are in
+                            the{" "}
+                            <Link href="/projects#open-source">project archive</Link>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div className="editorial-section about-section">
                 <SwimmingStory />
-                <div className="flex flex-wrap gap-6 pt-6"><Link href="/projects" className="text-secondary font-mono hover:underline">Explore projects →</Link><a href="/resume.pdf" className="text-secondary font-mono hover:underline">View résumé →</a></div>
             </div>
+
+            <nav className="about-links" aria-label="More pages">
+                <Link className="text-link" href="/projects">All case studies ↗</Link>
+                <a className="text-link" href="/resume.pdf">Résumé ↗</a>
+                <Link className="text-link" href="/contact">Contact ↗</Link>
+                <Link className="text-link" href="/chat">Ask AI about my work ↗</Link>
+            </nav>
         </div>
     );
 }

@@ -1,12 +1,12 @@
 ---
-title: "DiffuLLM — Training a Diffusion Language Model From Scratch"
+title: "DiffuLLM: Training a Diffusion Language Model From Scratch"
 ---
 
 ## The question
 
-Autoregressive language models generate one token at a time, left to right. DiffuLLM asks a different question: can a language model learn text by **denoising in parallel**, starting from a fully masked sequence and iteratively filling in the blanks?
+Autoregressive language models generate one token at a time, left to right. DiffuLLM asks a different question: can a language model learn text by **denoising in parallel**, starting from a fully masked sequence and filling in the blanks over several passes?
 
-This was a from-scratch research build, not an API wrapper. The system was trained on recipe text because recipes have a strong, inspectable structure: a title, ingredients, and an ordered instruction sequence.
+This was a from-scratch research build, not an API wrapper. I trained it on recipe text because recipes have a strong, inspectable structure: a title, ingredients, and an ordered instruction sequence.
 
 ## System design
 
@@ -22,7 +22,7 @@ DiffuLLM is a bidirectional Transformer trained with a D3PM-style discrete diffu
 | Training | PyTorch Distributed Data Parallel via `torchrun`, submitted to SLURM |
 | Checkpointing | Validation-loss checkpoints; the evaluated checkpoint is `best_step503000.pt` |
 
-The important design distinction is that the model does not receive a causal left-to-right history. It sees the whole partially masked sequence and learns to reconstruct missing tokens from bidirectional context.
+The key difference is that the model never gets a causal left-to-right history. It sees the whole partially masked sequence and learns to reconstruct missing tokens from both directions.
 
 ## Training and infrastructure
 
@@ -31,13 +31,13 @@ The important design distinction is that the model does not receive a causal lef
 - A local smoke-test path verifies the data pipeline, tokenizer, and local inference before a cluster run.
 - Checkpointing and validation-loss monitoring were used to select the evaluated checkpoint.
 
-The repository's comparison table also lists a **1.2M-step** figure for DiffuLLM, while the evaluation section documents the selected 503k checkpoint. Those numbers have not been reconciled as the same run. This page therefore treats **503k as the evaluated checkpoint** and does not use 1.2M as a headline result.
+The repository's comparison table also lists a **1.2M-step** figure for DiffuLLM, while the evaluation section documents the selected 503k checkpoint. Those numbers have not been reconciled as the same run, so this page treats **503k as the evaluated checkpoint** and does not use 1.2M as a headline result.
 
 ## Evaluation
 
-Evaluation focused on structured recipe completion: provide a title and ingredients, then generate the instruction sequence. The repository documents that short-to-medium generations are coherent and follow the recipe structure; generations at longer lengths are less reliable.
+Evaluation focused on structured recipe completion: provide a title and ingredients, then generate the instruction sequence. The repository documents that short-to-medium generations are coherent and follow the recipe structure, while longer generations are less reliable.
 
-No numeric benchmark is asserted here. The evidence is the committed training/evaluation code, the selected checkpoint, the generated examples in the README, and the final report. The report covers the broader three-way comparison, including two SEDD systems.
+No numeric benchmark is claimed here. The evidence is the committed training and evaluation code, the selected checkpoint, the generated examples in the README, and the final report. The report also covers the broader three-way comparison, including two SEDD systems.
 
 ## Failure modes
 
@@ -47,7 +47,7 @@ Longer generations exposed real limits:
 - Malformed control-token output.
 - Topic drift as the sequence grows beyond a few hundred tokens.
 
-The README attributes these to the difficulty of maintaining a global narrative state without a strict causal hidden state. That is a useful negative result: parallel denoising can model local structure while still struggling with long-range coherence.
+The README attributes these to the difficulty of holding a global narrative state without a strict causal hidden state. That's a useful negative result: parallel denoising can model local structure while still struggling with long-range coherence.
 
 ## My contribution and collaborators
 
@@ -66,4 +66,4 @@ The comparative report is co-authored with **Urvi Desai** and **Aparajita Sarkar
 
 ## Limits
 
-This is a recipe-domain research system with qualitative evaluation. It is not a production language model, and it is not evidence that discrete diffusion beats autoregressive models across general text. The 1.2M-step documentation discrepancy should be resolved before that figure is used publicly.
+This is a recipe-domain research system with qualitative evaluation. It is not a production language model, and it is not evidence that discrete diffusion beats autoregressive models on general text. The 1.2M-step documentation discrepancy should be resolved before that figure is used publicly.

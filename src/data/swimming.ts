@@ -89,7 +89,7 @@ export const swimmingProgression = [
 ];
 
 export const swimmingIntro =
-  "Before I was building machine learning systems, I was spending hours in the pool. I’ve been swimming since I was three and competing since 2012. Over the years, I repeatedly won district-level events and advanced to state-level competition through Gujarat’s Khel Mahakumbh, later representing my university at an inter-university aquatics tournament.";
+  "Before machine learning, I was in the pool. I started swimming at three and competing in 2012, then kept racing through school and university: repeated district wins, state-level meets through Gujarat’s Khel Mahakumbh, and a 2015 state medal in the 200m individual medley.";
 
 export const swimmingDistrictAchievement: SwimmingDistrictAchievement = {
   id: "district-championships",
@@ -110,33 +110,33 @@ export const swimmingStorySections: SwimmingStorySection[] = [
     id: "early-years",
     title: "Early Years in the Pool",
     paragraphs: [
-      "Swimming has been part of my life since I was three years old. Long before I started working with machine learning, I was training in the pool, learning to compete, and building a routine around the sport.",
-      "I began competing in 2012 and spent more than a decade participating in swimming competitions across school, district, state, and regional levels.",
+      "Swimming has been part of my life since I was three. Long before I worked with machine learning, I was training in the pool, learning to race, and building a routine around it.",
+      "I started competing in 2012 and spent more than a decade racing at school, district, state, and regional level.",
     ],
   },
   {
     id: "district-championships",
     title: "District Championships",
     paragraphs: [
-      "At district level, I repeatedly won events. In the qualifying years described in my competitive history, those district results included wins across at least three events, and they preceded my state-level appearances.",
-      "Through Gujarat’s Khel Mahakumbh, I repeatedly qualified through district-level meets to compete at the state level, particularly across a sustained 2014–2024 period. This describes a sustained period, not qualification in every calendar year.",
-      "The exact years, event names, placements, and lifetime totals are not yet fully documented.",
+      "At district level I kept winning events. In the qualifying years on record, those results included wins across at least three events, and they came before my state appearances.",
+      "Through Gujarat’s Khel Mahakumbh I qualified from district meets to the state level repeatedly, especially across a sustained 2014–2024 period. That describes a sustained stretch, not qualification in every calendar year.",
+      "The exact years, event names, placements, and lifetime totals are not fully documented.",
     ],
   },
   {
     id: "state-level",
     title: "Competing at State Level",
     paragraphs: [
-      "One of my proudest early achievements was earning a state-level medal in the 200m Individual Medley in 2015. The medal’s color, exact placement, and race time are not recorded here.",
+      "The 2015 state-level medal in the 200m individual medley is still the result I am proudest of. The medal colour, exact placement, and race time are not recorded here.",
     ],
   },
   {
     id: "school-university",
     title: "School and University Competition",
     paragraphs: [
-      "That same year, I competed at the CBSE West Zone Swimming Championship hosted by Sanskriti – The School in Ajmer.",
-      "I continued competing during university. In the 2023–24 season, I represented CVM University through GCET at the South West Zone Inter-University Aquatics Tournament, hosted at SRM University in Chennai.",
-      "Swimming has remained a defining part of my life for roughly two decades. It is something I have pursued independently of engineering, and it continues to be an important part of who I am.",
+      "That year I also competed at the CBSE West Zone Swimming Championship at Sanskriti – The School in Ajmer.",
+      "I kept competing at university. In the 2023–24 season I represented CVM University through GCET at the South West Zone Inter-University Aquatics Tournament at SRM University in Chennai.",
+      "Swimming has been part of my life for about two decades. It runs alongside engineering, and it is still something I do for myself.",
     ],
   },
 ];

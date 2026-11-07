@@ -3,58 +3,50 @@ type Experience = {
     role: string;
     period: string;
     start: string;
-    description: string[];
+    highlight: string;
 };
 
-// Ordered newest start date first. Adobe (2025–2026) and Foundation (Jan–May 2025)
-// overlap; when start dates are the same, the previously published order is kept.
+// Newest first. Adobe (2025–2026) overlaps Foundation (Jan–May 2025).
 const experiences: Experience[] = [
     {
         company: "Impruvon Health",
         role: "AI & Software Development Intern",
         period: "Summer 2026",
         start: "2026",
-        description: [
-            "Built a Python and FastMCP integration exposing nine typed tools for operational and transformed HL7 queries.",
-            "Implemented multi-location analytics across orders, dispenses, patient records, and clinical data.",
-            "Automated pull-request demos with Playwright recordings and validated narrated walkthroughs."
-        ],
+        highlight:
+            "Built a Python and FastMCP integration that exposes nine typed tools for operational and transformed HL7 queries.",
     },
     {
         company: "Adobe",
         role: "Campus Ambassador",
         period: "2025 – 2026",
         start: "2025",
-        description: ["Created content around Adobe Express and ran workshops for the Rutgers student community."],
+        highlight:
+            "Ran Adobe Express workshops and made content for the Rutgers student community.",
     },
     {
         company: "Foundation for Ecological Security",
         role: "AI Intern",
         period: "Jan 2025 – May 2025",
         start: "2025-01",
-        description: [
-            "Built AI bird classification system for IBIS 2.0; handled ~710GB image dataset, ~1,150 species.",
-            "Developed a two-stage deep learning pipeline achieving ~79% validation accuracy.",
-            "Delivered GUI/CLI via Gradio for researchers."
-        ],
+        highlight:
+            "Trained a two-stage vision pipeline on a 710 GB, 1,150-species image dataset and reached about 79% validation accuracy.",
     },
     {
         company: "Arcascope",
         role: "AI Intern",
         period: "Oct 2024 – Jan 2025",
         start: "2024-10",
-        description: [
-            "Built a fatigue prediction pipeline using heart-rate and step data from 135 participants; evaluated ~20 model iterations.",
-            "Improved MAE by ~78% (1.17 → 0.25) using PyTorch model with CORAL layer + ordinal losses.",
-            "Engineered features and used Runge–Kutta integration."
-        ],
+        highlight:
+            "Cut fatigue-prediction MAE from 1.17 to 0.25, about 78%, with a PyTorch ordinal model on wearable data from 135 participants.",
     },
     {
         company: "IEEE GCET Student Branch",
         role: "Secretary",
         period: "Dec 2023 – Dec 2024",
         start: "2023-12",
-        description: ["Organized more than 39 technical and networking events and coordinated branch operations and communications."],
+        highlight:
+            "Organized more than 39 technical and networking events and coordinated branch operations.",
     },
 ];
 
@@ -73,17 +65,13 @@ export function ExperienceTimeline() {
                         <div className="experience-content">
                             <h3>{exp.role}</h3>
                             <p className="experience-company">{exp.company}</p>
-                            <ul>
-                                {exp.description.map((desc) => (
-                                    <li key={desc}>{desc}</li>
-                                ))}
-                            </ul>
+                            <p className="experience-highlight">{exp.highlight}</p>
                         </div>
                     </li>
                 ))}
             </ol>
             <p className="experience-note">
-                Ordered by start date, newest first. Overlapping ranges reflect concurrent roles.
+                Newest first. Overlapping dates are concurrent roles.
             </p>
         </>
     );

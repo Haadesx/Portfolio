@@ -19,8 +19,8 @@ export default async function ProjectsPage() {
         <h1>Project archive<span>.</span></h1>
         <p>
           Selected work comes first: trained models, evaluated representation edits, computer
-          vision, and applied AI. The full archive keeps the earlier work and the wider GitHub
-          surface accessible without flattening everything into one grid.
+          vision, and applied AI. Earlier projects and the wider GitHub surface are still here,
+          grouped so the strongest work is easy to find.
         </p>
       </header>
 

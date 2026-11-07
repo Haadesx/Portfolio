@@ -18,17 +18,17 @@ export const projects: Project[] = [
     {
         slug: "ibis-2-0",
         title: "AI-Powered Bird Species Classification (IBIS 2.0)",
-        shortDescription: "Enterprise-scale bird classification system handling 710GB of data.",
+        shortDescription: "Bird-species classification system trained on 710GB of field imagery.",
         category: ["CV", "MLOps"],
         techStack: ["PyTorch", "Gradio", "ResNet"],
-        problem: "Classifying 1,150 bird species from a massive 710GB unstructured dataset.",
+        problem: "Classifying 1,150 bird species from a 710GB unstructured image dataset.",
         approach: "Two-stage deep learning pipeline with custom preprocessing.",
         resultsMetrics: ["79% Validation Accuracy", "1,150 Species Covered"],
     },
     {
         slug: "fatigue-prediction",
         title: "Daily Fatigue Prediction",
-        shortDescription: "Predicting daily fatigue scores from wearable data with high precision.",
+        shortDescription: "Predicting daily fatigue scores from wearable sensor data.",
         category: ["Time-Series", "Health AI"],
         techStack: ["PyTorch", "CORAL Loss", "Runge-Kutta"],
         problem: "Quantifying daily fatigue using noisy wearable sensor data.",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
         resultsMetrics: ["95.83% Emotion Recognition Accuracy"],
     },
     {
-        slug: "medcheck", title: "MedCheck — Vision-Assisted Medication Label Verification",
+        slug: "medcheck", title: "MedCheck: Vision-Assisted Medication Label Verification",
         shortDescription: "An OCR-first medication-label verifier built for HackRU 2026.",
         category: ["CV", "Health AI", "Applied AI"], techStack: ["React", "Flask", "FastAPI", "YOLO11n", "RapidOCR"],
         problem: "Help caregivers verify that a medication bottle matches the tracked prescription before a dose is logged.",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
         resultsMetrics: ["Working prototype", "OCR-first + human confirmation"], githubUrl: "https://github.com/Haadesx/HackRU26",
     },
     {
-        slug: "carewatch", title: "CareWatch — A Computer Vision Safety Monitoring Prototype",
+        slug: "carewatch", title: "CareWatch: A Computer Vision Safety Monitoring Prototype",
         shortDescription: "A hackathon prototype that turns pose and scene signals into short evidence clips for human review.",
         category: ["CV", "Health AI", "Applied AI"], techStack: ["Python", "React", "YOLOv8", "SQLite", "iOS"],
         problem: "Surface potentially concerning caregiver interactions for human review without claiming automated abuse detection.",
@@ -88,7 +88,7 @@ export const projects: Project[] = [
         resultsMetrics: ["Deterministic demo workflow"], githubUrl: "https://github.com/Haadesx/H-Swarm",
     },
     {
-        slug: "diffullm", title: "DiffuLLM — Training a Diffusion Language Model From Scratch",
+        slug: "diffullm", title: "DiffuLLM: Training a Diffusion Language Model From Scratch",
         shortDescription: "A from-scratch discrete diffusion language model trained on recipe corpora.",
         category: ["NLP", "Research"], techStack: ["PyTorch", "Transformers", "D3PM", "DDP", "SLURM"],
         problem: "Explore parallel denoising as an alternative to left-to-right text generation.",
@@ -96,7 +96,7 @@ export const projects: Project[] = [
         resultsMetrics: ["500k+ training iterations", "D3PM-style absorbing-mask diffusion"], githubUrl: "https://github.com/Haadesx/Diffusion-Model", paperUrl: "https://github.com/Haadesx/Diffusion-Model/blob/main/report.pdf",
     },
     {
-        slug: "iconoclast", title: "ICONOCLAST — Evaluating Targeted LLM Representation Edits",
+        slug: "iconoclast", title: "ICONOCLAST: Evaluating Targeted LLM Representation Edits",
         shortDescription: "A Python framework for measuring the utility cost of refusal-behavior edits in open-weight language models.",
         category: ["NLP", "Research"], techStack: ["Python", "PyTorch", "Hugging Face", "Optuna"],
         problem: "Study the trade-off between refusal behavior and benign capability in edited language models.",

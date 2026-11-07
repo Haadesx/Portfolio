@@ -11,10 +11,9 @@ type FlagshipPanelProps = {
 
 export function FlagshipPanel({ project, curation, index }: FlagshipPanelProps) {
   const detailCells = [
-    { label: "01 / PROBLEM", text: curation.problem },
-    { label: "02 / METHOD", text: curation.method },
-    { label: "03 / EVIDENCE", text: curation.evaluation },
-    { label: "04 / LIMITATIONS", text: curation.limitation },
+    { label: "METHOD", text: curation.method },
+    { label: "EVIDENCE", text: curation.evaluation },
+    { label: "LIMITS", text: curation.limitation },
   ];
 
   return (
@@ -43,19 +42,19 @@ export function FlagshipPanel({ project, curation, index }: FlagshipPanelProps) 
 
       <div className="flagship-scan">
         <div>
-          <span>MY CONTRIBUTION</span>
+          <span>WHAT I DID</span>
           <p>{curation.contribution}</p>
         </div>
         <div>
-          <span>TECHNICAL CAPABILITY</span>
-          <p>{curation.capability}</p>
+          <span>WHY IT IS INTERESTING</span>
+          <p>{curation.differentiator}</p>
         </div>
       </div>
 
       <details className="flagship-disclosure">
         <summary>
-          <span className="disclosure-title">ENGINEERING BREAKDOWN</span>
-          <span className="disclosure-hint">PROBLEM · METHOD · EVIDENCE · LIMITS</span>
+          <span className="disclosure-title">ENGINEERING DETAILS</span>
+          <span className="disclosure-hint">METHOD · EVIDENCE · LIMITS</span>
           <span className="disclosure-toggle" aria-hidden="true">+</span>
         </summary>
         <div className="flagship-detail-grid">
@@ -69,7 +68,7 @@ export function FlagshipPanel({ project, curation, index }: FlagshipPanelProps) 
       </details>
 
       <div className="flagship-footer">
-        <span className="flagship-role">RESEARCH / BUILD / EVALUATION</span>
+        <span className="flagship-role">BUILD / EVALUATION / WRITE-UP</span>
         <div className="flagship-links">
           {project.githubUrl ? (
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -86,7 +85,7 @@ export function FlagshipPanel({ project, curation, index }: FlagshipPanelProps) 
               DEMO ↗
             </a>
           ) : null}
-          <Link href={`/projects/${project.slug}`}>FULL CASE STUDY ↗</Link>
+          <Link href={`/projects/${project.slug}`}>CASE STUDY ↗</Link>
         </div>
       </div>
     </article>

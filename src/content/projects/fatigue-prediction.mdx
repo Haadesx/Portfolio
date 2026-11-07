@@ -3,27 +3,31 @@ title: "Fatigue Prediction"
 ---
 
 ## Context
-During my internship at **Arcascope**, I tackled the challenge of quantifying and predicting daily fatigue using data from wearable devices. Fatigue is subjective and noisy, making standard regression approaches prone to overfitting.
+
+During my internship at **Arcascope**, I worked on quantifying and predicting daily fatigue from wearable data. Fatigue is subjective and noisy, which makes standard regression prone to overfitting.
 
 ## Methodology
-We approached this as an **ordinal regression** problem rather than simple regression or classification.
 
-### Key Innovations:
-1. **CORAL (Consistent Rank Logits) Layer:**
-   We replaced the standard output layer with a CORAL layer to enforce the ordinal nature of fatigue scores (e.g., Scale 1-10).
-   
-2. **Loss Function Engineering:**
+We treated it as an **ordinal regression** problem instead of plain regression or classification.
+
+### What we changed
+
+1. **CORAL (Consistent Rank Logits) layer:**
+   We replaced the standard output layer with a CORAL layer so the model respects the ordered fatigue scores (e.g. a 1–10 scale).
+
+2. **Custom loss:**
    Combined `CornLoss` (Conditional Ordinal Regression) with standard MSE to penalize large deviations while respecting rank order.
 
-3. **Physics-Informed Features:**
-   Integrated **Runge-Kutta** methods to model circadian rhythm dynamics directly into the feature set.
+3. **Physics-informed features:**
+   Integrated **Runge-Kutta** methods to model circadian rhythm dynamics directly in the feature set.
 
 ## Results vs Baseline
-We iterated through ~20 architectures. The final model significantly outperformed the baseline:
+
+We iterated through ~20 architectures. The final model beat the baseline by a wide margin:
 
 | Metric | Baseline (Linear Reg) | Deep Ordinal Model | Improvement |
 |:-------|:---------------------|:-------------------|:------------|
 | MAE    | 1.17                 | **0.25**           | **78%**     |
 | Accuracy| 52% (within ±1)     | **85%**            | +33%        |
 
-This reduction in Mean Absolute Error (MAE) allowed the system to provide actionable daily alerts to users.
+That MAE drop let the system send users a daily alert they could act on.
